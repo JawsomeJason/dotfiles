@@ -1,6 +1,6 @@
 [alias]
 	up = pull
-	c = !"git add -A && git commit -am $1"
+	c = !"git add -A && git commit -av"
 	# Clone a repository including all submodules
 	cl = clone --recursive
 	df = diff --color --color-words --abbrev
