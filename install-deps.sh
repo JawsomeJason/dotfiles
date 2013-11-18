@@ -68,5 +68,5 @@ sudo gem update --system --no-document
 
 # Set symlink for Sublime Text 2
 rm ~/bin/subl
-ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 
