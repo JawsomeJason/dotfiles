@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 echo "export CC=/usr/local/bin/gcc-4.2" >> ~/.bash_profile
 echo "export PATH=$PATH:/Volumes/HA/repos/dev/bin" >> ~/.bash_profile
 

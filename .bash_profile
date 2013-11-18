@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH"
 export CC=/usr/local/bin/gcc-4.2

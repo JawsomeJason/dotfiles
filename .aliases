@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."											# one dir up
 alias ...="cd ../.."										# 2 dirs up
