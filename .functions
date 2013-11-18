@@ -290,7 +290,7 @@ function tre() {
 
 # find shorthand
 function f() {
-    find . -name "$1"
+    find . -name "$1" 2>/dev/null
 }
 
 # Extract archives - use: extract <file>

@@ -22,6 +22,7 @@ installcask dash
 installcask growler
 installcask flux
 installcask totalfinder
+installcask asepsis
 installcask logitech-unifying
 #installcask hands-off
 
