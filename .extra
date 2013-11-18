@@ -1,6 +1,0 @@
-export CC=/usr/local/bin/gcc-4.2
-export PATH=$PATH:/Volumes/HA/repos/dev/bin
-
-#echo "[user]" >> ~/.gitconfig
-#echo "	name = Jason T. Featheringham" >> ~/.gitconfig
-#echo "	email = jfeatheringham@onekingslane.com" >> ~/.gitconfig
