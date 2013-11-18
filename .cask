@@ -1,0 +1,42 @@
+# Install native apps
+brew tap phinze/homebrew-cask
+brew install brew-cask
+
+function installcask() {
+	brew cask install "${@}" 2> /dev/null
+}
+
+# ALL
+installcask adobe-air
+installcask alfred
+installcask bettertouchtool
+installcask dash
+installcask growler
+installcask flux
+installcask totalfinder
+installcask logitech-unifying
+#installcask hands-off
+
+
+# WORK
+installcask dropbox
+installcask google-chrome
+installcask firefox
+installcask imageoptim
+installcask sublime-text
+installcask the-unarchiver
+installcask virtualbox
+installcask vlc
+installcask lastpass-universal
+
+# HOME
+installcask daisydisk
+installcask growlnotify
+installcask miro-video-converter
+installcask tor-browser
+installcask utorrent
+installcask tvshows
+installcask nosleep
+
+# Remove outdated versions from the cellar
+brew cleanup
