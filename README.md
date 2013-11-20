@@ -9,6 +9,9 @@ From: http://net.tutsplus.com/tutorials/tools-and-tips/setting-up-a-mac-dev-mach
 
 Then, run the following:
 
+	#install xcode and then xcode tools
+	xcode-select --install
+
 	# homebrew, rvm, etc
 	bash install-deps.sh
 
@@ -20,7 +23,7 @@ Then, run the following:
 	# installs CLI stuff
 	bash .brew
 
-	# installs common apps
+	# installs common apps (comment out those you don't need)
 	bash .cask
 
 	# sets default OSX settings (requires restart)

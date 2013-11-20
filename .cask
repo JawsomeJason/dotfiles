@@ -7,6 +7,7 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Install native apps
+brew tap caskroom/versions
 brew tap phinze/homebrew-cask
 brew install brew-cask
 
@@ -14,7 +15,26 @@ function installcask() {
 	brew cask install "${@}"
 }
 
+
+# WORK
+installcask dropbox
+installcask firefox
+installcask imageoptim
+installcask sublime-text-3
+installcask the-unarchiver
+installcask virtualbox
+installcask vlc
+installcask growlnotify
+
+# HOME
+installcask miro-video-converter
+installcask tor-browser
+installcask utorrent
+installcask tvshows
+installcask nosleep
+
 # ALL
+installcask google-chrome
 installcask adobe-air
 installcask alfred
 installcask bettertouchtool
@@ -24,28 +44,12 @@ installcask flux
 installcask totalfinder
 installcask asepsis
 installcask logitech-unifying
+installcask daisydisk
+installcask lastpass-universal
 #installcask hands-off
 
-
-# WORK
-installcask dropbox
-installcask google-chrome
-installcask firefox
-installcask imageoptim
-installcask sublime-text
-installcask the-unarchiver
-installcask virtualbox
-installcask vlc
-installcask lastpass-universal
-
-# HOME
-installcask daisydisk
-installcask growlnotify
-installcask miro-video-converter
-installcask tor-browser
-installcask utorrent
-installcask tvshows
-installcask nosleep
+# Make sure alfred can find casks
+brew cask alfred link
 
 # Remove outdated versions from the cellar
 brew cleanup

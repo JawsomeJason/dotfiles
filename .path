@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+export CC=/usr/local/bin/gcc-4.2
+export PATH=$PATH:/Volumes/HA/repos/dev/bin
