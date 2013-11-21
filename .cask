@@ -25,6 +25,7 @@ installcask the-unarchiver
 installcask virtualbox
 installcask vlc
 installcask growlnotify
+installcask parallels-9
 
 # HOME
 installcask miro-video-converter
@@ -34,18 +35,21 @@ installcask tvshows
 installcask nosleep
 
 # ALL
-installcask google-chrome
+installcask google-chrome-beta
 installcask adobe-air
 installcask alfred
 installcask bettertouchtool
 installcask dash
 installcask growler
-installcask flux
-installcask totalfinder
+installcask f-lux
+installcask xtrafinder
 installcask asepsis
 installcask logitech-unifying
 installcask daisydisk
 installcask lastpass-universal
+installcask slate
+installcask iterm2-beta
+
 #installcask hands-off
 
 # Make sure alfred can find casks
