@@ -30,7 +30,7 @@ installcask parallels-9
 # HOME
 installcask miro-video-converter
 installcask tor-browser
-installcask utorrent
+installcask transmission
 installcask tvshows
 installcask nosleep
 
@@ -49,6 +49,7 @@ installcask daisydisk
 installcask lastpass-universal
 installcask slate
 installcask iterm2-beta
+installcask cyberduck
 
 #installcask hands-off
 
