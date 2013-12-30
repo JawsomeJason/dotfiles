@@ -43,6 +43,7 @@ installcask dash
 installcask growler
 installcask f-lux
 installcask xtrafinder
+installcask screenhero
 installcask asepsis
 installcask logitech-unifying
 installcask daisydisk
