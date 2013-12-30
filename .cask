@@ -17,41 +17,41 @@ function installcask() {
 
 
 # WORK
-installcask dropbox		# files in cloud
-installcask firefox		# browser
+installcask dropbox			# files in cloud
+installcask firefox			# browser
 installcask imageoptim		# easy image optimization
 installcask sublime-text-3	# text editor
 installcask the-unarchiver	# file compression manager
 installcask virtualbox		# vm
-installcask vlc			# video viewer
-installcask growler		# notifications
+installcask vlc				# video viewer
+installcask growler			# notifications
 installcask growlnotify		# notifications
 installcask parallels-9		# vm
 
 # HOME
 installcask miro-video-converter	# video conversion
-installcask tor-browser			# private browser
-installcask transmission		# torrents
-installcask tvshows			# torrents
-installcask nosleep			# torrents
+installcask tor-browser				# private browser
+installcask transmission			# torrents
+installcask tvshows					# torrents
+installcask nosleep					# torrents
 
 # ALL
 installcask google-chrome-beta
 installcask adobe-air
-installcask alfred		# replacement for spotlight
-installcask bettertouchtool	# better touch gestures
-installcask calibre 		# e-reader and conversion tool
-installcask dash		# programming documentation tool
-installcask f-lux		# better screen viewing at night
-installcask xtrafinder		# finder enhancements
-installcask screenhero		# screen sharing
-installcask asepsis		# hide .ds_store files
+installcask alfred				# replacement for spotlight
+installcask bettertouchtool		# better touch gestures
+installcask calibre 			# e-reader and conversion tool
+installcask dash				# programming documentation tool
+installcask f-lux				# better screen viewing at night
+installcask xtrafinder			# finder enhancements
+installcask screenhero			# screen sharing
+installcask asepsis				# hide .ds_store files
 installcask logitech-unifying	# mouse
-installcask daisydisk		# disk space
+installcask daisydisk			# disk space
 installcask lastpass-universal	# passwords
-installcask slate		# screen workspace
-installcask iterm2-beta		# terminal replacement
-installcask cyberduck		# ftp
+installcask slate				# screen workspace
+installcask iterm2-beta			# terminal replacement
+installcask cyberduck			# ftp
 
 #installcask hands-off
 
