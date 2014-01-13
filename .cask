@@ -36,6 +36,7 @@ installcask tvshows					# torrents
 installcask nosleep					# torrents
 
 # ALL
+installcask coconutbattery		# battery monitoring
 installcask google-chrome-beta
 installcask adobe-air
 installcask alfred				# replacement for spotlight
