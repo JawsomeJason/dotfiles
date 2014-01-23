@@ -21,7 +21,7 @@ bash < <( curl https://raw.github.com/jamiew/git-friendly/master/install.sh)
 
 # homebrew!
 # you need the code CLI tools YOU FOOL.
-ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go)
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
 
 
