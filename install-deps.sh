@@ -66,6 +66,9 @@ sudo easy_install Pygments
 # Check gems are up to date without installing documentation
 sudo gem update --system --no-document
 
+# install gem dependencies
+gem install haml
+
 # Set symlink for Sublime Text 2
 rm ~/bin/subl
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
