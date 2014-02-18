@@ -42,3 +42,9 @@ brew install lua52
 
 # Remove outdated versions from the cellar
 brew cleanup
+
+# Install node modules
+npm install -g coffee-script
+npm install -g css-lint
+npm install -g jshint
+
