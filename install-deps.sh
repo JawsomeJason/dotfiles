@@ -68,6 +68,7 @@ sudo gem update --system --no-document
 
 # install gem dependencies
 gem install haml
+gem install scss-lint
 
 # Set symlink for Sublime Text 2
 rm ~/bin/subl
