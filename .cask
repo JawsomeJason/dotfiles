@@ -36,6 +36,7 @@ installcask tvshows					# torrents
 installcask nosleep					# torrents
 
 # ALL
+installcask bartender                   # menu bar organizer
 installcask coconutbattery		# battery monitoring
 installcask google-chrome-beta
 installcask adobe-air
