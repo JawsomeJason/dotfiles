@@ -34,6 +34,8 @@ installcask tor-browser				# private browser
 installcask transmission			# torrents
 installcask tvshows					# torrents
 installcask nosleep					# torrents
+installcask kindle			# kindle reader
+installcask send-to-kindle		# kindle uploader
 
 # ALL
 installcask bartender                   # menu bar organizer
