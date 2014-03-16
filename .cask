@@ -19,7 +19,6 @@ function installcask() {
 # WORK
 installcask dropbox			# files in cloud
 installcask firefox			# browser
-installcask imageoptim		# easy image optimization
 installcask sublime-text-3	# text editor
 installcask the-unarchiver	# file compression manager
 installcask virtualbox		# vm
@@ -56,7 +55,8 @@ installcask lastpass-universal	# passwords
 installcask slate				# screen workspace
 installcask iterm2-beta			# terminal replacement
 installcask cyberduck			# ftp
-installcask imageoptim			# image optimization
+installcask imageoptim		# easy image optimization
+installcask cheatsheet		# shortcut cheatsheet
 
 #installcask hands-off
 
