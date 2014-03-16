@@ -56,6 +56,7 @@ installcask lastpass-universal	# passwords
 installcask slate				# screen workspace
 installcask iterm2-beta			# terminal replacement
 installcask cyberduck			# ftp
+installcask imageoptim			# image optimization
 
 #installcask hands-off
 
