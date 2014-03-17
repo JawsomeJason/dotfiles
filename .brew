@@ -33,6 +33,7 @@ brew install rhino
 brew install tree
 brew install webkit2png
 brew install zopfli
+brew install freetype
 
 # https://github.com/lra/mackup/blob/master/README.md
 brew install mackup
