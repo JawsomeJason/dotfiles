@@ -3,3 +3,4 @@
 #export CC=/usr/local/bin/gcc-4.2
 export PATH=$PATH:/Volumes/HA/repos/dev/bin
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=~/pebble-dev/PebbleSDK-2.0.1/bin:$PATH #pebble binaries
