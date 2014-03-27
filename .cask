@@ -49,7 +49,8 @@ installcask f-lux				# better screen viewing at night
 installcask xtrafinder			# finder enhancements
 installcask screenhero			# screen sharing
 installcask asepsis				# hide .ds_store files
-installcask logitech-unifying	# mouse
+installcask logitech-unifying	        # mouse
+installcask logitech-control-center	# mouse
 installcask daisydisk			# disk space
 installcask lastpass-universal	# passwords
 installcask slate				# screen workspace
