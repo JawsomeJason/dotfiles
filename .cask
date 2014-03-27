@@ -24,7 +24,7 @@ installcask the-unarchiver	# file compression manager
 installcask virtualbox		# vm
 installcask vlc				# video viewer
 installcask growler			# notifications
-installcask growlnotify		# notifications
+installcask growlnotify		# notifications 
 installcask parallels-9		# vm
 
 # HOME
