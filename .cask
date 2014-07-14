@@ -19,7 +19,7 @@ function installcask() {
 # WORK
 installcask dropbox			# files in cloud
 installcask firefox			# browser
-installcask sublime-text-3	# text editor
+installcask sublime-text3	# text editor
 installcask the-unarchiver	# file compression manager
 installcask virtualbox		# vm
 installcask vlc				# video viewer
