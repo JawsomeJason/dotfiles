@@ -45,7 +45,7 @@ installcask alfred				# replacement for spotlight
 installcask bettertouchtool		# better touch gestures
 installcask calibre 			# e-reader and conversion tool
 installcask dash				# programming documentation tool
-installcask f-lux				# better screen viewing at night
+installcask flux				# better screen viewing at night
 installcask xtrafinder			# finder enhancements
 installcask screenhero			# screen sharing
 installcask asepsis				# hide .ds_store files
