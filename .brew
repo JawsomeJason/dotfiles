@@ -49,3 +49,6 @@ npm install -g coffee-script
 npm install -g css-lint
 npm install -g jshint
 
+# games
+brew tap homebrew/games
+brew install nethack
