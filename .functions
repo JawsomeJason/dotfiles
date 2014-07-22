@@ -330,4 +330,15 @@ function extract() {
 	fi
 }
 
+# save current directory
+function save_dir() {
+	LAST_LOCATION = $(pwd)
+}
+
+# return to saved directory
+function return_to_saved_dir() {
+	cd "$LAST_LOCATION"
+	unset LAST_LOCATION
+}
+
 
