@@ -332,7 +332,7 @@ function extract() {
 
 # save current directory
 function save_dir() {
-	LAST_LOCATION = $(pwd)
+	LAST_LOCATION=$(pwd)
 }
 
 # return to saved directory
