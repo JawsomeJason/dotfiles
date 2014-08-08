@@ -14,6 +14,10 @@
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
+  	co = checkout
+  	ci = commit
+	br = branch
+  	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 
 	# Pull in remote changes for the current repository and all its submodules
 	p = !"git pull; git submodule foreach git pull origin master"
