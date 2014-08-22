@@ -18,7 +18,7 @@ function installcask() {
 
 # WORK
 installcask dropbox			# files in cloud
-installcask firefox			# browser
+installcask firefox-beta		# browser
 installcask sublime-text3	# text editor
 installcask the-unarchiver	# file compression manager
 installcask virtualbox		# vm
@@ -40,6 +40,7 @@ installcask send-to-kindle		# kindle uploader
 installcask bartender                   # menu bar organizer
 installcask coconutbattery		# battery monitoring
 installcask google-chrome-beta
+installcask google-drive
 installcask adobe-air
 installcask alfred				# replacement for spotlight
 installcask bettertouchtool		# better touch gestures
