@@ -11,6 +11,9 @@ brew tap caskroom/versions
 brew tap phinze/homebrew-cask
 brew install brew-cask
 
+# update if already installed
+brew update && brew upgrade brew-cask && brew cleanup && brew cask cleanup # && is your friend :)
+
 function installcask() {
 	brew cask install "${@}"
 }
@@ -59,6 +62,12 @@ installcask iterm2-beta			# terminal replacement
 installcask cyberduck			# ftp
 installcask imageoptim		# easy image optimization
 installcask cheatsheet		# shortcut cheatsheet
+
+installcask onyx 		# monitoring
+installcask maintenance		# maintenance
+installcask deeper		# features
+
+
 
 #installcask hands-off
 
