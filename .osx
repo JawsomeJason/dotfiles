@@ -410,6 +410,13 @@ defaults write com.apple.dock wvous-tr-corner -int 5
 defaults write com.apple.dock wvous-tr-modifier -int 0
 
 ###############################################################################
+# Photos                                                                      #
+###############################################################################
+
+# Disable Photos launch on media connect (iPhone, etc.)
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool YES
+
+###############################################################################
 # Safari & WebKit                                                             #
 ###############################################################################
 
