@@ -66,7 +66,6 @@ installcask logitech-control-center	# mouse
 installcask logitech-unifying	        # mouse
 installcask maintenance			# maintenance
 installcask onyx 			# monitoring
-installcask screenhero			# screen sharing
 installcask slate			# screen workspace
 installcask xtrafinder			# finder enhancements
 
