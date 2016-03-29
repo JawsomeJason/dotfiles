@@ -39,7 +39,7 @@ brew install freetype
 brew install mackup
 
 brew tap homebrew/versions
-brew install lua52
+brew install lua53
 
 # Remove outdated versions from the cellar
 brew cleanup
