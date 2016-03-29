@@ -47,6 +47,7 @@ installcask 1password			# Password management
 installcask adobe-air
 installcask alfred			# replacement for spotlight
 installcask asepsis			# hide .ds_store files
+installcask authy                       # security
 installcask bartender                   # menu bar organizer
 installcask bettertouchtool		# better touch gestures
 installcask calibre 			# e-reader and conversion tool
