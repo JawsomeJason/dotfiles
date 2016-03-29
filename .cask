@@ -8,8 +8,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Install native apps
 brew tap caskroom/versions
-brew tap phinze/homebrew-cask
-brew install brew-cask
+#brew tap phinze/homebrew-cask
+#brew install brew-cask
 
 # update if already installed
 brew update && brew upgrade brew-cask && brew cleanup && brew cask cleanup # && is your friend :)
@@ -69,7 +69,7 @@ installcask onyx 			# monitoring
 installcask xtrafinder			# finder enhancements
 
 # Make sure alfred can find casks
-brew cask alfred link
+#brew cask alfred link
 
 # Remove outdated versions from the cellar
 brew cleanup
