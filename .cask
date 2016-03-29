@@ -24,7 +24,7 @@ installcask dropbox		# files in cloud
 installcask firefox-beta	# browser
 installcask growler		# notifications
 installcask growlnotify		# notifications 
-installcask parallels-9		# vm
+installcask parallels-desktop   # vm
 installcask sublime-text3	# text editor
 installcask the-unarchiver	# file compression manager
 installcask virtualbox		# vm
@@ -41,7 +41,6 @@ installcask sonarr			# tv
 installcask sonarr-menu			# tv helper
 installcask tor-browser			# private browser
 installcask transmission		# torrents
-installcask tvshows			# torrents
 
 # ALL
 installcask 1password			# Password management
