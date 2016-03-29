@@ -48,6 +48,7 @@ brew cleanup
 npm install -g coffee-script
 npm install -g css-lint
 npm install -g jshint
+npm install -g ember-cli
 
 # games
 brew tap homebrew/games
