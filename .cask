@@ -64,7 +64,6 @@ installcask imageoptim			# easy image optimization
 installcask iterm2			# terminal replacement
 installcask licecap			# easy screen recording to GIF
 installcask logitech-control-center	# mouse
-installcask logitech-unifying	        # mouse
 installcask maintenance			# maintenance
 installcask onyx 			# monitoring
 installcask xtrafinder			# finder enhancements
