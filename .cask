@@ -34,6 +34,7 @@ installcask vlc			# video viewer
 installcask airvpn			# vpn
 installcask couchpotato			# movies
 installcask kindle			# kindle reader
+installcask logitech-gaming-software    # mouse
 installcask miro-video-converter	# video conversion
 installcask nosleep			# torrents
 installcask send-to-kindle		# kindle uploader
