@@ -34,6 +34,7 @@ brew install tree
 brew install webkit2png
 brew install zopfli
 brew install freetype
+brew install watchman
 
 # https://github.com/lra/mackup/blob/master/README.md
 brew install mackup
@@ -45,6 +46,7 @@ brew install lua53
 brew cleanup
 
 # Install node modules
+npm install -g bower
 npm install -g coffee-script
 npm install -g css-lint
 npm install -g jshint
