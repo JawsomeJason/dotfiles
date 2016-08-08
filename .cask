@@ -69,6 +69,7 @@ installcask licecap			# easy screen recording to GIF
 installcask logitech-control-center	# mouse
 installcask maintenance			# maintenance
 installcask onyx 			# monitoring
+installcask sourcetree			# git gui
 installcask spotify			# music
 installcask xtrafinder			# finder enhancements
 
