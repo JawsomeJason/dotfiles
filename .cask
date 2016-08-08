@@ -60,6 +60,7 @@ installcask dash			# programming documentation tool
 installcask deeper			# features
 installcask divvy                       # window management
 installcask flux			# better screen viewing at night
+installcask franz			# unified chat
 installcask google-chrome-beta
 installcask google-drive
 installcask imageoptim			# easy image optimization
