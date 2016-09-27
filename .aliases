@@ -157,6 +157,11 @@ alias c='pygmentize -O style=monokai -f console256 -g'
 
 # GIT STUFF
 
+# hub git enhancer for github
+alias git=hub
+
+alias gitcopy=git_copy
+
 # Undo a `git push`
 alias undopush="git push -f origin HEAD^:master"
 
