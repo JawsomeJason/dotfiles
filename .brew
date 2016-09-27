@@ -25,6 +25,7 @@ brew install homebrew/dupes/grep
 # Install other useful binaries
 brew install ack
 brew install git
+brew install hub
 brew install lynx
 brew install node
 brew install pigz
