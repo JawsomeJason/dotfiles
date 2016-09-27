@@ -96,6 +96,28 @@ function gitio() {
 	curl -i http://git.io/ -F "url=${2}" -F "code=${1}"
 }
 
+
+# Copies a git repo to another (great for copying your own repo)
+# Relies on hub (brew install hub)
+function git_copy() {
+	if [ -z "${1}" -o -z "${2}" ]; then
+		echo "Usage: \`gitcopy source destination [description] [homepage]\`"
+		return 1
+	fi
+
+	local description="${3:-}"
+	local homepage="${4:-}"
+
+	git clone ${1} ${2}
+	cd ${2}
+	rm -rf .git
+	git init
+	git add .
+	git commit -m "Initial commit"
+	git create ${2} -d "$description" -h "$homepage"
+	git push origin master
+}
+
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
 	local port="${1:-8000}"
