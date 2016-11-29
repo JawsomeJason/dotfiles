@@ -7,7 +7,7 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Install native apps
-brew tap caskroom/versions
+brew tap caskroom/cask
 #brew tap phinze/homebrew-cask
 #brew install brew-cask
 
