@@ -24,11 +24,9 @@ installcask dropbox		# files in cloud
 installcask firefox-beta	# browser
 installcask growler		# notifications
 installcask growlnotify		# notifications 
-installcask parallels-desktop   # vm
 installcask sublime-text3	# text editor
 installcask the-unarchiver	# file compression manager
-installcask virtualbox		# vm
-installcask vlc			# video viewer
+installcask zeplin		# design spec viewer
 
 # HOME
 installcask airvpn			# vpn
