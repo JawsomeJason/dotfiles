@@ -25,6 +25,8 @@ Then, run the following:
 
 	# installs common apps (comment out those you don't need)
 	bash .cask
+	bash .cask--home for home apps
+	bash .cask--work for work apps
 
-	# sets default OSX settings (requires restart)
-	bash .osx
+	# sets default MacOS settings (requires restart)
+	bash .macos

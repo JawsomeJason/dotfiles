@@ -12,67 +12,28 @@ brew tap caskroom/cask
 #brew install brew-cask
 
 # update if already installed
-brew update && brew upgrade brew-cask && brew cleanup && brew cask cleanup # && is your friend :)
+brew update && brew cleanup && brew cask cleanup # && is your friend :)
 
 function installcask() {
-	brew cask install "${@}"
+        brew cask install "${@}"
 }
 
+installcask 1password                    # Password management
+installcask alfred                       # replacement for spotlight
+installcask authy                        # security
+installcask cheatsheet                   # shortcut cheatsheet
+installcask caffeine                     # no sleep
+installcask daisydisk                    # disk space
+installcask dropbox                      # files in cloud
+installcask gray                         # dark mode per app
+installcask google-chrome-beta           # browsing
+installcask iterm2                       # terminal replacement
+installcask logitech-control-center      # mouse
+installcask spectacle                    # window management
+installcask spotify                      # music
+installcask visual-studio-code           # code editor
+installcask vanilla                      # menu bar organizer
 
-# WORK
-installcask dropbox		# files in cloud
-installcask firefox-beta	# browser
-installcask growler		# notifications
-installcask growlnotify		# notifications 
-installcask sublime-text3	# text editor
-installcask the-unarchiver	# file compression manager
-installcask zeplin		# design spec viewer
-
-# HOME
-installcask airvpn			# vpn
-installcask couchpotato			# movies
-installcask kindle			# kindle reader
-installcask logitech-gaming-software    # mouse
-installcask miro-video-converter	# video conversion
-installcask nosleep			# torrents
-installcask send-to-kindle		# kindle uploader
-installcask sonarr			# tv
-installcask sonarr-menu			# tv helper
-installcask tor-browser			# private browser
-installcask transmission		# torrents
-
-# ALL
-installcask 1password			# Password management
-installcask adobe-air
-installcask alfred			# replacement for spotlight
-installcask asepsis			# hide .ds_store files
-installcask authy                       # security
-installcask bartender                   # menu bar organizer
-installcask bettertouchtool		# better touch gestures
-installcask calibre 			# e-reader and conversion tool
-installcask cheatsheet			# shortcut cheatsheet
-installcask coconutbattery		# battery monitoring
-installcask cyberduck			# ftp
-installcask daisydisk			# disk space
-installcask dash			# programming documentation tool
-installcask deeper			# features
-installcask divvy                       # window management
-installcask flux			# better screen viewing at night
-installcask franz			# unified chat
-installcask google-chrome-beta
-installcask google-drive
-installcask imageoptim			# easy image optimization
-installcask iterm2			# terminal replacement
-installcask licecap			# easy screen recording to GIF
-installcask logitech-control-center	# mouse
-installcask maintenance			# maintenance
-installcask onyx 			# monitoring
-installcask sourcetree			# git gui
-installcask spotify			# music
-installcask xtrafinder			# finder enhancements
-
-# Make sure alfred can find casks
-#brew cask alfred link
 
 # Remove outdated versions from the cellar
 brew cleanup

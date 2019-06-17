@@ -14,7 +14,7 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias g="git"
 alias h="history"
-alias s="subl"
+alias c="code"
 alias o="open"
 alias oo="open ."
 
@@ -149,11 +149,12 @@ alias slt='open -a "Sublime Text"'
 
 # be nice
 alias please=sudo
+alias now="sudo !!"
 alias hosts='sudo $EDITOR /etc/hosts'   # yes I occasionally 127.0.0.1 twitter.com ;)
 
 # `cat` with beautiful colors. requires Pygments installed.
 # 							   sudo easy_install Pygments
-alias c='pygmentize -O style=monokai -f console256 -g'
+alias cat='pygmentize -O style=monokai -f console256 -g'
 
 # GIT STUFF
 
@@ -178,6 +179,6 @@ alias fs="stat -f \"%z bytes\""
 
 
 # ===== Custom
-alias s="subl"
+
 
 
