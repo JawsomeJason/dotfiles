@@ -28,7 +28,6 @@ installcask dropbox                      # files in cloud
 installcask gray                         # dark mode per app
 installcask google-chrome-beta           # browsing
 installcask iterm2                       # terminal replacement
-installcask logitech-control-center      # mouse
 installcask spectacle                    # window management
 installcask spotify                      # music
 installcask visual-studio-code           # code editor

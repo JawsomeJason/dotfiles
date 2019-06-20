@@ -21,7 +21,6 @@ function installcask() {
 installcask eddie                        # vpn
 installcask logitech-gaming-software     # mouse
 installcask radarr                       # movies
-installcask send-to-kindle               # kindle uploader
 installcask sonarr                       # tv
 installcask transmission                 # torrents
 
