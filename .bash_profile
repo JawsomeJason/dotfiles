@@ -2,7 +2,7 @@
 
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH"
-export CC=/usr/local/bin/gcc-4.2
+# export CC=/usr/local/bin/gcc-4.2
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
