@@ -57,7 +57,7 @@ chmod +x ~/code/z/z.sh
 
 
 # for the c alias (syntax highlighted cat)
-sudo easy_install Pygments
+# sudo easy_install Pygments
 
 
 # chrome canary as default

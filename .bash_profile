@@ -50,3 +50,4 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 
 # git completion with an alias to g
 ( [ -f ~/.git-completion.bash ] || curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash ) && source ~/.git-completion.bash && __git_complete g __git_main
+eval "$(/opt/homebrew/bin/brew shellenv)"

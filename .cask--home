@@ -7,7 +7,7 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Install native apps
-brew tap caskroom/cask
+brew tap homebrew/cask
 #brew tap phinze/homebrew-cask
 #brew install brew-cask
 
@@ -15,7 +15,7 @@ brew tap caskroom/cask
 brew update && brew upgrade brew-cask && brew cleanup && brew cask cleanup # && is your friend :)
 
 function installcask() {
-        brew cask install "${@}"
+        brew install "${@}"
 }
 
 installcask eddie                        # vpn

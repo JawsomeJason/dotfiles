@@ -19,13 +19,13 @@ alias o="open"
 alias oo="open ."
 
 # web dev
-alias b="bundle"
-alias be="bundle exec"
-alias berk="bundle exec rake"
-alias ber="bundle exec rails"
-alias bers="bundle exec rails server"
-alias berc="bundle exec rails console"
-alias beg="bundle exec guard"
+# alias b="bundle"
+# alias be="bundle exec"
+# alias berk="bundle exec rake"
+# alias ber="bundle exec rails"
+# alias bers="bundle exec rails server"
+# alias berc="bundle exec rails console"
+# alias beg="bundle exec guard"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
