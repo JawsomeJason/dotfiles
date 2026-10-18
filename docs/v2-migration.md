@@ -86,18 +86,24 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
 - [x] **Gate 3, part 2.** Jason deleted the archived previous repo. The retired local copies went
       to the Trash on both machines.
 
-## 2.1: setup
+## 2.1: guided setup
 
-- [ ] `install.sh`: plain bash 3.2, installs Homebrew, chezmoi, clones, runs `dotfiles setup`.
-- [ ] `dotfiles setup`: one file per step in `cli/setup/NN-<step>.sh`, each with `check` and `fix`.
-      Steps only run when `check` fails, so a halted run resumes. `--redo <step>`, `--redo-all`,
-      `--dry-run`, and a flag for every prompt plus `-y` for agents.
+- [x] `install.sh`: plain bash 3.2, installs Homebrew, git, chezmoi, gh and gum, clones, runs
+      `dotfiles setup`.
+- [x] `dotfiles setup`: one file per step in `cli/setup/NN-<step>.sh`, each with `check` and `fix`.
+      Steps only run when `check` fails, so a stopped run resumes. `--redo <step>`, `--redo-all`,
+      `--skip <step>`, `-n`, a flag for every question, and `-y` for agents.
+- [x] The shared work layer's `dotfiles job new` and `dotfiles job leave`, with every employer's
+      words in its own `FORBIDDEN_WORDS_<EMPLOYER>` secret that CI joins.
+
+## 2.2: packages
+
 - [ ] A `Brewfile` per layer, applied with `brew bundle` only when it changes. Never an automatic
       `brew bundle cleanup`.
 - [ ] `dotfiles install <pkg>` and `dotfiles remove <pkg>` (alias `uninstall`): run brew, update
       the chosen layer's Brewfile with `brew bundle add` or `remove`, commit and push.
 
-## 2.2: discoverability
+## 2.3: discoverability
 
 - [ ] [usage](https://github.com/jdx/usage) spec lines in every command file, generating help,
       `docs/cli.md`, zsh completions and an MCP listing. `usage lint` in CI.

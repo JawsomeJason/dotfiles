@@ -15,5 +15,9 @@ jobs:
       - run: git fetch --tags --force
       - name: Check files, history and tags
         env:
-          FORBIDDEN_WORDS: ${{ secrets.FORBIDDEN_WORDS }}
-        run: scripts/check-words.sh --require-words --tree --history
+          SECRETS_JSON: ${{ toJSON(secrets) }}
+        run: |
+          # Every employer has its own FORBIDDEN_WORDS* secret; check against all of them
+          FORBIDDEN_WORDS=$(jq -r 'to_entries[] | select(.key | startswith("FORBIDDEN_WORDS")) | .value' <<<"$SECRETS_JSON" | paste -sd, -)
+          export FORBIDDEN_WORDS
+          scripts/check-words.sh --require-words --tree --history

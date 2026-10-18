@@ -15,6 +15,11 @@ Where to look:
   first comment line is its usage and second line its summary; `dotfiles help` reads them.
   Shared helpers, including the layer list, are in `cli/lib/common.sh`. The CLI must run on stock
   macOS bash 3.2: no associative arrays, no `mapfile`, no `${var,,}`.
+- `cli/setup/NN-<step>.sh` are `dotfiles setup`'s steps, run in name order. Each sets `title` and
+  defines `check` (reads the real state, succeeds when done) and `fix`. Ask questions only through
+  `cli/lib/prompt.sh` (`ask`, `confirm`, `require`), which skip prompts without a terminal or with
+  `--yes`, and give every question a flag in `cli/commands/setup.sh`. `install.sh` bootstraps a
+  fresh Mac and hands off to setup.
 - `scripts/` holds checks: `check-secrets.sh`, `check-words.sh` and `shell-snapshot.zsh`.
 - `docs/v2-migration.md` tracks the current migration and roadmap. Update it when a step lands.
 

@@ -23,26 +23,26 @@ chezmoi and git command. Edit files in this repo, not the copies in your home fo
 ## Setting up a new Mac
 
 ```sh
-brew install chezmoi
-git clone https://github.com/JawsomeJason/dotfiles ~/code/dotfiles
-chezmoi init --source ~/code/dotfiles --apply
+curl -fsSL https://raw.githubusercontent.com/JawsomeJason/dotfiles/main/install.sh | bash
 ```
 
-`init` asks a few things once and saves the answers in `~/.config/chezmoi/chezmoi.toml`:
+`install.sh` installs Homebrew, git, chezmoi, gh and gum, clones this repo to `~/code/dotfiles`,
+and runs `dotfiles setup`. Setup works through numbered steps, each one checking the machine's real
+state first, so it asks only for what is missing and is safe to rerun after a stop:
 
-- Whether this is a work machine.
-- Git author name and email.
-- The personal machine's short hostname, and the domain that reaches tailnet machines by name.
-  Together they set up `ssh personal`, which tries `<host>.<domain>` first and falls back to
-  `<host>.local` on the same network. Leave both blank to skip it.
-- Optionally, a 1Password `op://` reference to the personal machine's login password. When set,
-  the `personal` command sends it with that one connection so the remote login keychain unlocks
-  without a prompt. Nothing is written to disk on either machine.
+- The machine's answers, saved in `~/.config/chezmoi/chezmoi.toml`: whether it is a work machine,
+  the git author name and email, the personal machine's short hostname and the domain that reaches
+  tailnet machines by name (together they set up `ssh personal`, which tries `<host>.<domain>`
+  first and falls back to `<host>.local`), and optionally a 1Password `op://` reference to the
+  personal machine's login password, which `personal` sends with each connection so the remote
+  keychain unlocks without a prompt.
+- Applying this base, after showing the diff.
+- Signing in to GitHub and setting a personal git email in this repo.
+- On a work machine, the private layers (see the `dotjob` layer's `PLAYBOOK.md`).
 
-To change an answer later, edit `~/.config/chezmoi/chezmoi.toml` and run `dotfiles apply`.
-
-For a work machine, or when a job starts or ends, follow `PLAYBOOK.md` in the private `dotjob`
-layer repo. It covers the rest of the setup, including the employer layer.
+`dotfiles setup -n` lists the steps still to do. Every question has a flag, and `--yes` takes the
+defaults, so agents run it without prompts: see `dotfiles help setup`. To change an answer later,
+edit `~/.config/chezmoi/chezmoi.toml` and run `dotfiles apply`.
 
 ## Layers
 
