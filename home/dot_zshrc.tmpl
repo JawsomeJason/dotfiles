@@ -55,17 +55,20 @@ fi
 
 # Each SSH login starts with the login keychain locked. Unlock it with the password the connecting
 # machine forwarded (the `personal` function sends one from 1Password), or ask when none arrived.
-if [[ -n $SSH_CONNECTION && -o interactive ]] &&
-  ! security show-keychain-info ~/Library/Keychains/login.keychain-db >/dev/null 2>&1; then
-  if [[ -n ${DOTFILES_KEYCHAIN_PASSWORD:-} ]]; then
-    security unlock-keychain -p "$DOTFILES_KEYCHAIN_PASSWORD" ~/Library/Keychains/login.keychain-db 2>/dev/null ||
-      print -u2 "dotfiles: the forwarded password did not unlock the login keychain"
-  else
-    print "Login keychain is locked; enter your Mac login password to unlock it."
-    security unlock-keychain ~/Library/Keychains/login.keychain-db
+# Only the interactive shell clears the password: ~/.zshenv also loads this file in the outer
+# non-interactive shell that ssh starts, which must pass it on to the interactive one.
+if [[ -n $SSH_CONNECTION && -o interactive ]]; then
+  if ! security show-keychain-info ~/Library/Keychains/login.keychain-db >/dev/null 2>&1; then
+    if [[ -n ${DOTFILES_KEYCHAIN_PASSWORD:-} ]]; then
+      security unlock-keychain -p "$DOTFILES_KEYCHAIN_PASSWORD" ~/Library/Keychains/login.keychain-db 2>/dev/null ||
+        print -u2 "dotfiles: the forwarded password did not unlock the login keychain"
+    else
+      print "Login keychain is locked; enter your Mac login password to unlock it."
+      security unlock-keychain ~/Library/Keychains/login.keychain-db
+    fi
   fi
+  unset DOTFILES_KEYCHAIN_PASSWORD
 fi
-unset DOTFILES_KEYCHAIN_PASSWORD
 {{- end }}
 
 # ==============================================================================
