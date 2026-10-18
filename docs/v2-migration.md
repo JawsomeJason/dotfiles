@@ -107,9 +107,14 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
       base, the shared work layer or the employer layer.
 - [x] `dotfiles install <pkg>` and `dotfiles remove <pkg>` (alias `uninstall`): run brew, update
       the chosen layer's Brewfile with `brew bundle add` or `remove`, commit and push.
-- [~] The personal machine is missing 21 base packages that were only on the work laptop (Mac
-      utilities, `nvm`, the zsh plugins). Its next `dotfiles sync` installs them; Jason decides
-      whether they stay in the base or move to the work layer first.
+- [x] Jason curated the lists (2026-10-18): apps no machine should get were dropped and uninstalled,
+      and ClaudeBar, Google Drive, Docker, Docker Desktop and Zoom moved to the base so every Mac
+      gets them. Both machines satisfy every Brewfile they use: the base (48 packages) everywhere,
+      `Brewfile.personal` (15) on the personal machine, and the private work and employer layers on
+      the work laptop.
+- [~] BlackHole is out of every Brewfile but still installed on the personal machine; its
+      uninstaller needs a password: `brew uninstall --cask blackhole-16ch`.
+- [ ] Decide whether `just` stays in the shared work layer.
 
 ## 2.3: discoverability
 
