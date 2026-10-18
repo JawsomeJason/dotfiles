@@ -130,9 +130,9 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
 
 ## Later
 
+Dropped (Jason, 2026-10-18): device descriptions in the tailnet policy file (`dotfiles hosts`
+already covers them) and Linux support.
+
 - [ ] Review `v1.0.0` for anything worth bringing into 2.x, such as the macOS defaults.
-- [ ] Device descriptions in the tailnet policy file, as comments beside `hosts` aliases.
-      (`dotfiles hosts` already shows them from `~/.config/dotfiles/devices`.)
-- [ ] Make the layers Linux-ready (templates already branch on `.chezmoi.os` where needed).
 - [ ] The multi-job workstation project lives in the shared work layer's docs.
 - [x] A starter template for new employer layers lives in the shared work layer's `template/`; `dotfiles job new` uses it.
