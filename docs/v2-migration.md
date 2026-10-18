@@ -82,10 +82,8 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
 - [x] **Gate 3, part 1.** Confirmed the employer layer holds every commit of the previous repo
       (10 of 10, no other refs, issues, pull requests, releases or secrets), then archived the
       previous repo so nothing can push to it.
-- [~] **Gate 3, part 2.** Delete the archived previous repo. The token lacks the `delete_repo` scope,
-      which needs Jason's browser login: `gh auth refresh -h github.com -u JawsomeJason -s delete_repo`,
-      then `gh repo delete JawsomeJason/dots --yes`. After that, remove the retired local copies
-      (`~/code/.dots-retired-20261018` on both machines, `~/.dots-retired-20261018` on the laptop).
+- [x] **Gate 3, part 2.** Jason deleted the archived previous repo. The retired local copies went
+      to the Trash on both machines.
 
 ## 2.1: setup
 
