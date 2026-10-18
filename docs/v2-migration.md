@@ -47,10 +47,10 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
 - [x] Read-only preview on the work laptop: `dotfiles status`, `dotfiles diff` and
       `dotfiles apply -n` against test copies of the configs. Nothing written.
 - [x] `FORBIDDEN_WORDS` Actions secret set on this repo and the shared work layer.
-- [~] **Gate 1, before the first public push.** Review the full-history words check, the tree and
+- [x] **Gate 1, before the first public push.** Review the full-history words check, the tree and
       `git log`. Then push `main`, make it the default branch, delete `master`, set the
       description, turn off the wiki, and push the shared work layer.
-- [ ] Laptop cutover:
+- [x] Laptop cutover:
   1. Move `~/code/dots` aside.
   2. Run `chezmoi init --source ~/code/dotfiles` without `--apply`, so it rewrites
      `~/.config/chezmoi/chezmoi.toml` from the new template and asks the two new questions.
@@ -60,16 +60,22 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
      PATH until the first apply creates the link.
   6. Apply, then remove the files the old setup installed that no layer manages any more (the list
      is in the employer layer's docs).
-- [ ] **Gate 2a.** Jason reviews the laptop diff before the apply.
-- [ ] Personal machine cutover over `ssh personal`:
+- [x] **Gate 2a.** Laptop diff reviewed against the earlier preview and applied. A shell snapshot
+      before and after differs only in the removed `dots` and `majel` functions and the new
+      `personal` function.
+- [x] Personal machine cutover over `ssh personal`:
   1. Rename its checkout to `~/code/dotfiles` and point it at the public repo (pulls need no login).
   2. Reset to `main`.
   3. Run `chezmoi init --source ~/code/dotfiles` for the new answers.
   4. Append the keychain unlock block to its `~/.config/zsh/local.zsh`. It has a keychain password
      file too, and the shared `.zshrc` no longer unlocks.
   5. Review the diff and apply.
-- [ ] **Gate 2b.** Jason reviews the personal machine's diff before the apply.
-- [ ] Full-history words check again, then tag `v2.0.0` and publish a release.
+- [x] **Gate 2b.** Personal machine diff matched the preview and was applied. Its snapshot differs
+      only by the new `ccp`, the removed `dots`, and per-session SSH variables.
+- [~] The personal machine's `~/.config/keychain-password` holds a wrong password: unlock fails with
+      "passphrase not correct". It failed silently before the migration too. Jason needs to rewrite
+      the file with the current login password.
+- [x] Full-history words check again, then tag `v2.0.0` and publish a release.
 - [ ] **Gate 3.** Jason grants the `delete_repo` scope; confirm the employer layer holds every
       commit of the previous repo; delete the previous repo.
 
