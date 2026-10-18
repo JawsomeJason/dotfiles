@@ -1,0 +1,16 @@
+#!/bin/sh
+# Checks the tracked files and every commit being pushed for forbidden words before anything leaves
+# this machine, including commits no branch points at yet (like dotfiles backup's work-in-progress
+# branches). Tags are checked too when a tag is pushed.
+root=$(git rev-parse --show-toplevel)
+revs=
+tags=0
+while read -r local_ref local_sha _remote_ref remote_sha; do
+  case $local_sha in *[!0]*) ;; *) continue ;; esac
+  case $local_ref in refs/tags/*) tags=1 ;; esac
+  revs="$revs $local_sha"
+  case $remote_sha in *[!0]*) git cat-file -e "$remote_sha^{commit}" 2>/dev/null && revs="$revs ^$remote_sha" ;; esac
+done
+[ -n "$revs" ] || exit 0
+"$root/scripts/check-words.sh" --tree --revs "$revs" || exit 1
+[ $tags = 0 ] || exec "$root/scripts/check-words.sh" --history

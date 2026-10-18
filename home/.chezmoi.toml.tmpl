@@ -1,0 +1,18 @@
+{{- /* Asked once per machine on `chezmoi init`, then remembered in ~/.config/chezmoi/chezmoi.toml */ -}}
+{{- $work := promptBoolOnce . "work" "Is this a work machine" -}}
+{{- $gitName := promptStringOnce . "gitName" "Git author name" "Jason Featheringham" -}}
+{{- $gitEmail := promptStringOnce . "gitEmail" "Git author email" "thejase@gmail.com" -}}
+{{- $personalHost := promptStringOnce . "personalHost" "Personal machine's short hostname (blank for none)" "" -}}
+{{- $tailnetDomain := promptStringOnce . "tailnetDomain" "Domain that reaches tailnet machines by name (blank for none)" "" -}}
+sourceDir = {{ .chezmoi.workingTree | quote }}
+
+[data]
+  work = {{ $work }}
+  gitName = {{ $gitName | quote }}
+  gitEmail = {{ $gitEmail | quote }}
+  personalHost = {{ $personalHost | lower | quote }}
+  tailnetDomain = {{ $tailnetDomain | lower | quote }}
+
+[git]
+  autoCommit = false
+  autoPush = false

@@ -1,0 +1,23 @@
+# LCARS: Star Trek TNG computer panels. Gold text on black, lavender selection.
+background = #000000
+foreground = #ffcc66
+cursor-color = #ff9900
+cursor-text = #000000
+selection-background = #9999cc
+selection-foreground = #000000
+palette = 0=#000000
+palette = 1=#ff2200
+palette = 2=#99cc66
+palette = 3=#ffcc66
+palette = 4=#6688cc
+palette = 5=#cc99cc
+palette = 6=#99ccff
+palette = 7=#ffddbb
+palette = 8=#666688
+palette = 9=#ff2200
+palette = 10=#bbdd88
+palette = 11=#ffdd99
+palette = 12=#99aaff
+palette = 13=#ddaadd
+palette = 14=#bbddff
+palette = 15=#ffffff

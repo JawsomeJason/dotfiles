@@ -1,0 +1,7 @@
+{{ if .work }}
+.zshenv
+{{ end }}
+
+{{ if or (not (and .personalHost .tailnetDomain)) (eq (lower .chezmoi.hostname) .personalHost) }}
+.ssh/config.d/dotfiles
+{{ end }}

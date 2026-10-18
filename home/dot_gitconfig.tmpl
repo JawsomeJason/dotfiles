@@ -1,0 +1,14 @@
+[user]
+	email = {{ .gitEmail }}
+	name = {{ .gitName }}
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+{{- if .work }}
+[gitbutler]
+	aiModelProvider = openai
+	diffLengthLimit = 10000
+{{- end }}

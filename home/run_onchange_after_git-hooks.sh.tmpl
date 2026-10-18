@@ -1,0 +1,3 @@
+#!/bin/sh
+# Points the dotfiles repo at its own hooks, so the secret and forbidden-word checks run on every machine
+git -C {{ .chezmoi.workingTree | quote }} config core.hooksPath .githooks

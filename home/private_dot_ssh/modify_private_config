@@ -1,0 +1,7 @@
+#!/bin/sh
+# Keeps an Include for config.d/ at the top of ~/.ssh/config and leaves the rest as it was
+current=$(cat)
+case "$current" in
+  "Include config.d/*"*) printf '%s\n' "$current" ;;
+  *) printf 'Include config.d/*\n\n%s\n' "$current" ;;
+esac

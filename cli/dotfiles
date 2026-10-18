@@ -1,0 +1,57 @@
+#!/bin/bash
+# dotfiles: applies the base dotfiles and every layer on this machine with chezmoi.
+# Plain bash 3.2 so it runs on a fresh Mac. Each subcommand lives in cli/commands/<name>.sh, and
+# `dotfiles <x>` runs `dotfiles-<x>` from PATH when no built-in matches.
+set -u -o pipefail
+
+self=$0
+while [ -L "$self" ]; do
+  link=$(readlink "$self")
+  case $link in /*) self=$link ;; *) self=$(dirname "$self")/$link ;; esac
+done
+DOTFILES_CLI=$(cd "$(dirname "$self")" && pwd)
+export DOTFILES_CLI
+
+. "$DOTFILES_CLI/lib/common.sh"
+
+DRY_RUN=0 VERBOSE=0 ONLY_LAYER=
+
+# One pass: the first word is the command. Global options work anywhere for built-ins; for a plugin,
+# everything after its name passes through untouched. Other options go to the built-in itself.
+cmd='' want_help=0 rest=()
+while [ $# -gt 0 ]; do
+  case $1 in
+    -h|--help) want_help=1 ;;
+    -V|--version) [ -n "$cmd" ] || cmd=version ;;
+    -n|--dry-run) DRY_RUN=1 ;;
+    -v|--verbose) VERBOSE=1 ;;
+    -l|--layer) [ $# -ge 2 ] || die "--layer needs a name"; ONLY_LAYER=$2; shift ;;
+    --layer=*) ONLY_LAYER=${1#--layer=} ;;
+    --) shift; rest+=("$@"); break ;;
+    -*) [ -n "$cmd" ] || die "unknown option $1 (try dotfiles --help)"; rest+=("$1") ;;
+    *)
+      if [ -n "$cmd" ]; then rest+=("$1")
+      else
+        cmd=$1
+        if [ ! -f "$DOTFILES_CLI/commands/$cmd.sh" ]; then shift; rest+=("$@"); break; fi
+      fi
+      ;;
+  esac
+  shift
+done
+if [ $want_help = 1 ]; then
+  if [ -n "$cmd" ] && [ "$cmd" != help ] && [ -f "$DOTFILES_CLI/commands/$cmd.sh" ]; then rest=("$cmd"); else rest=(); fi
+  cmd=help
+fi
+cmd=${cmd:-status}
+set -- ${rest[@]+"${rest[@]}"}
+export DRY_RUN VERBOSE ONLY_LAYER
+
+if [ -f "$DOTFILES_CLI/commands/$cmd.sh" ]; then
+  . "$DOTFILES_CLI/commands/$cmd.sh"
+  "cmd_$cmd" "$@"
+elif command -v "dotfiles-$cmd" >/dev/null 2>&1; then
+  exec "dotfiles-$cmd" "$@"
+else
+  die "unknown command '$cmd' (try dotfiles help)"
+fi

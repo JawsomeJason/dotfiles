@@ -1,0 +1,4 @@
+# Loads the interactive login env into non-interactive SSH commands, skipped once brew is already on PATH
+if [[ -n $SSH_CONNECTION && ! -o interactive && :$PATH: != *:/opt/homebrew/bin:* ]]; then
+  { source ~/.zprofile; source ~/.zshrc; } >/dev/null 2>&1
+fi

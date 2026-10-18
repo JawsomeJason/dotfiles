@@ -1,0 +1,19 @@
+name: forbidden words
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: git fetch --tags --force
+      - name: Check files, history and tags
+        env:
+          FORBIDDEN_WORDS: ${{ secrets.FORBIDDEN_WORDS }}
+        run: scripts/check-words.sh --require-words --tree --history

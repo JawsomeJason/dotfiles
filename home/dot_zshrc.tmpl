@@ -1,0 +1,127 @@
+# Managed by chezmoi from ~/code/dotfiles/home/dot_zshrc.tmpl. Edit that file (or run
+# `chezmoi edit ~/.zshrc`), not this one, or the next `dotfiles apply` puts it back.
+
+# ==============================================================================
+# PATH
+# ==============================================================================
+export PATH="$PATH:$HOME/.local/bin"                       # user-local binaries
+export PATH="$HOME/.bun/bin:$PATH"                         # bun
+{{- if not .work }}
+export BUN_INSTALL="$HOME/.bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"       # bun completions
+export PATH="/opt/homebrew/opt/rustup/bin:$HOME/.cargo/bin:$HOME/go/bin:$PATH"
+path=($HOME/.local/bin ${path:#$HOME/.local/bin})          # user-local binaries win here
+{{- end }}
+
+# Work layers drop shell files here; later names win (10-shared.zsh, then 20-<job>.zsh)
+for f in ~/.config/zsh/work/*.zsh(N); do source $f; done
+unset f
+
+# ==============================================================================
+# Node / nvm
+# ==============================================================================
+if [[ -s /opt/homebrew/opt/nvm/nvm.sh ]]; then
+  export NVM_DIR="$HOME/.nvm"
+  source /opt/homebrew/opt/nvm/nvm.sh
+  [ -s /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm ] && source /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm
+
+  # Switch to the folder's .nvmrc Node on every cd (installing it if missing), and back to the
+  # default Node on leaving. From the nvm README.
+  autoload -Uz add-zsh-hook
+  load-nvmrc() {
+    local nvmrc_path="$(nvm_find_nvmrc)"
+    if [ -n "$nvmrc_path" ]; then
+      local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+      if [ "$nvmrc_node_version" = "N/A" ]; then
+        nvm install
+      elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+        nvm use --silent
+      fi
+    elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+      nvm use default --silent
+    fi
+  }
+  add-zsh-hook chpwd load-nvmrc
+  load-nvmrc
+fi
+
+# ==============================================================================
+# Machine-local settings and secrets
+# ==============================================================================
+# Tokens and anything else this machine alone needs live in ~/.config/zsh/local.zsh, which is
+# never in git. See ~/code/dotfiles/README.md.
+[[ -r ~/.config/zsh/local.zsh ]] && source ~/.config/zsh/local.zsh
+
+# ==============================================================================
+# Aliases
+# ==============================================================================
+
+# git
+alias co='git checkout'
+alias main='co main'
+
+# npm
+alias run='npm run'
+alias dev='run dev'
+alias refresh='git pull && nvm i && nvm use && npm install'   # sync branch, node version, deps
+
+# claude
+alias cc='claude --dangerously-skip-permissions{{ if .work }} --chrome{{ end }}'
+# cc in jason-mode with poteto-mode; jason-mode only starts from its slash command, so it goes in as
+# the first message
+ccp() { cc --append-system-prompt "At the start of this session, after the jason-mode skill loads, invoke the pstack:poteto-mode skill before doing anything else. Where jason-mode and poteto-mode conflict, jason-mode wins." "/personal:jason-mode $*"; }
+
+# >>> grok installer >>>
+if [[ -d ~/.grok ]]; then
+  export PATH="$HOME/.grok/bin:$PATH"
+  fpath=(~/.grok/completions/zsh $fpath)
+fi
+autoload -Uz compinit && compinit -C
+# <<< grok installer <<<
+{{- if not .work }}
+
+[[ -r ~/.openclaw/completions/openclaw.zsh ]] && source ~/.openclaw/completions/openclaw.zsh
+{{- end }}
+{{- if and .personalHost .tailnetDomain (ne (lower .chezmoi.hostname) .personalHost) }}
+
+# personal: shell on the personal machine, or run a command there with its aliases/PATH loaded.
+# Args form one remote shell string like ssh: personal cc, personal 'cd ~/code/x && cc'
+personal() {
+  (( $# )) || { ssh personal; return }
+  local cmd="$*" tty
+  [[ -t 0 && -t 1 ]] && tty=-t
+  ssh $tty personal zsh -lic ${(q)cmd}
+}
+{{- end }}
+
+# >>> cctab hook >>>
+# Runs a one-shot command staged by cctab for this exact folder, then forgets it.
+_cctab_boot() {
+  [[ -o interactive ]] || return 0
+  local d="${XDG_CACHE_HOME:-$HOME/.cache}/cctab/pending"
+  [[ -d $d ]] || return 0
+  local key f tmp
+  key=$(printf '%s' "${PWD:A}" | shasum -a 256 | cut -c1-16)
+  f="$d/$key.sh"
+  [[ -f $f ]] || return 0
+  # Older than 3 minutes means the tab was never opened; drop it.
+  if [[ -n $(find "$f" -mmin +3 2>/dev/null) ]]; then rm -f -- "$f"; return 0; fi
+  # Consume before running so a crash can never re-trigger it.
+  tmp="$d/.run-$$-$key.sh"
+  mv -f -- "$f" "$tmp" 2>/dev/null || return 0
+  source -- "$tmp"
+  rm -f -- "$tmp"
+}
+_cctab_boot
+# <<< cctab hook <<<
+
+# LCARS prompt (pills for the folder, git, PR, Node and more)
+source ~/.config/zsh/lcars-prompt.zsh
+
+# Fish-style autosuggestions from history and completions, then syntax highlighting (must stay last)
+if [[ -r /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+[[ -r /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] &&
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

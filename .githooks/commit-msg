@@ -1,0 +1,3 @@
+#!/bin/sh
+# Blocks a commit message that holds a word a private layer forbids
+exec "$(git rev-parse --show-toplevel)/scripts/check-words.sh" --message "$1"
