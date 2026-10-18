@@ -72,10 +72,10 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
   5. Review the diff and apply.
 - [x] **Gate 2b.** Personal machine diff matched the preview and was applied. Its snapshot differs
       only by the new `ccp`, the removed `dots`, and per-session SSH variables.
-- [~] Keychain over SSH: the `personal` command forwards the login password from 1Password for one
-      connection, and `.zshrc` unlocks with it (or asks once in that session). No password file
-      on either machine. Waiting on Jason to create the 1Password item and add the one-line
-      `AcceptEnv` file on the personal machine (see README).
+- [x] Keychain over SSH: each SSH session makes one unlock call, which attaches it to the keychain
+      the desktop login already unlocked, with no prompt. When the keychain is really locked, the
+      `personal` command's password from 1Password unlocks it; plain `ssh` asks once. No password
+      file on the personal machine.
 - [~] Old backups on the personal machine that predate this migration, such as
       `~/.dots-backup-20261012`, may hold tokens. Review and remove them by hand.
 
