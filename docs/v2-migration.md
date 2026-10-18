@@ -94,7 +94,9 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
       Steps only run when `check` fails, so a stopped run resumes. `--redo <step>`, `--redo-all`,
       `--skip <step>`, `-n`, a flag for every question, and `-y` for agents.
 - [x] The shared work layer's `dotfiles job new` and `dotfiles job leave`, with every employer's
-      words in its own `FORBIDDEN_WORDS_<EMPLOYER>` secret that CI joins.
+      employer layer repos tagged `dotfiles-employer-layer`. `dotfiles job words` gathers every
+      such repo's words into the single `FORBIDDEN_WORDS` secret CI reads, so past employers stay
+      blocked.
 
 ## 2.2: packages
 
