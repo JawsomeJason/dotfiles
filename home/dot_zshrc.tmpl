@@ -1,6 +1,10 @@
 # Managed by chezmoi from ~/code/dotfiles/home/dot_zshrc.tmpl. Edit that file (or run
 # `chezmoi edit ~/.zshrc`), not this one, or the next `dotfiles apply` puts it back.
 
+# Completions for dotfiles itself (generated from its usage spec). Set before anything runs compinit,
+# which nvm's completion does.
+fpath=(~/.config/zsh/completions $fpath)
+
 # ==============================================================================
 # PATH
 # ==============================================================================
@@ -86,9 +90,6 @@ alias cc='claude --dangerously-skip-permissions{{ if .work }} --chrome{{ end }}'
 # cc in jason-mode with poteto-mode; jason-mode only starts from its slash command, so it goes in as
 # the first message
 ccp() { cc --append-system-prompt "At the start of this session, after the jason-mode skill loads, invoke the pstack:poteto-mode skill before doing anything else. Where jason-mode and poteto-mode conflict, jason-mode wins." "/personal:jason-mode $*"; }
-
-# Completions for dotfiles itself (generated from its usage spec)
-fpath=(~/.config/zsh/completions $fpath)
 
 # >>> grok installer >>>
 if [[ -d ~/.grok ]]; then
