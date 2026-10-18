@@ -4,6 +4,7 @@
 {{- $gitEmail := promptStringOnce . "gitEmail" "Git author email" "thejase@gmail.com" -}}
 {{- $personalHost := promptStringOnce . "personalHost" "Personal machine's short hostname (blank for none)" "" -}}
 {{- $tailnetDomain := promptStringOnce . "tailnetDomain" "Domain that reaches tailnet machines by name (blank for none)" "" -}}
+{{- $personalKeychainRef := promptStringOnce . "personalKeychainRef" "1Password op:// reference to the personal machine's login password, sent by `personal` (blank for none)" "" -}}
 sourceDir = {{ .chezmoi.workingTree | quote }}
 
 [data]
@@ -12,6 +13,7 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
   gitEmail = {{ $gitEmail | quote }}
   personalHost = {{ $personalHost | lower | quote }}
   tailnetDomain = {{ $tailnetDomain | lower | quote }}
+  personalKeychainRef = {{ $personalKeychainRef | quote }}
 
 [git]
   autoCommit = false

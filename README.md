@@ -35,6 +35,9 @@ chezmoi init --source ~/code/dotfiles --apply
 - The personal machine's short hostname, and the domain that reaches tailnet machines by name.
   Together they set up `ssh personal`, which tries `<host>.<domain>` first and falls back to
   `<host>.local` on the same network. Leave both blank to skip it.
+- Optionally, a 1Password `op://` reference to the personal machine's login password. When set,
+  the `personal` command sends it with that one connection so the remote login keychain unlocks
+  without a prompt. Nothing is written to disk on either machine.
 
 To change an answer later, edit `~/.config/chezmoi/chezmoi.toml` and run `dotfiles apply`.
 
@@ -80,6 +83,14 @@ Work machines only: the `--chrome` flag on `cc`.
 
 Every machine except the personal one: the `personal` function, which opens a shell there or runs
 a command with its aliases loaded.
+
+Every Mac: SSH logins start with the login keychain locked. `~/.zshrc` unlocks it with a password the
+connecting machine forwarded, or asks for it once in that session when none arrived. The receiving
+machine's SSH server has to accept the variable once:
+
+```sh
+echo 'AcceptEnv DOTFILES_KEYCHAIN_PASSWORD' | sudo tee /etc/ssh/sshd_config.d/200-dotfiles.conf
+```
 
 Personal machines only: the Go, Cargo, rustup and bun paths, the openclaw completion, and
 `~/.zshenv`, which loads the shell setup into non-interactive SSH commands.

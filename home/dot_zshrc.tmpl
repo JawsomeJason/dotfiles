@@ -51,6 +51,22 @@ fi
 # Tokens and anything else this machine alone needs live in ~/.config/zsh/local.zsh, which is
 # never in git. See ~/code/dotfiles/README.md.
 [[ -r ~/.config/zsh/local.zsh ]] && source ~/.config/zsh/local.zsh
+{{- if eq .chezmoi.os "darwin" }}
+
+# Each SSH login starts with the login keychain locked. Unlock it with the password the connecting
+# machine forwarded (the `personal` function sends one from 1Password), or ask when none arrived.
+if [[ -n $SSH_CONNECTION && -o interactive ]] &&
+  ! security show-keychain-info ~/Library/Keychains/login.keychain-db >/dev/null 2>&1; then
+  if [[ -n ${DOTFILES_KEYCHAIN_PASSWORD:-} ]]; then
+    security unlock-keychain -p "$DOTFILES_KEYCHAIN_PASSWORD" ~/Library/Keychains/login.keychain-db 2>/dev/null ||
+      print -u2 "dotfiles: the forwarded password did not unlock the login keychain"
+  else
+    print "Login keychain is locked; enter your Mac login password to unlock it."
+    security unlock-keychain ~/Library/Keychains/login.keychain-db
+  fi
+fi
+unset DOTFILES_KEYCHAIN_PASSWORD
+{{- end }}
 
 # ==============================================================================
 # Aliases
@@ -86,11 +102,21 @@ autoload -Uz compinit && compinit -C
 
 # personal: shell on the personal machine, or run a command there with its aliases/PATH loaded.
 # Args form one remote shell string like ssh: personal cc, personal 'cd ~/code/x && cc'
+{{- if .personalKeychainRef }}
+# Sends the personal machine's login password from 1Password with the connection, for one session only,
+# so its keychain unlocks without a prompt.
+{{- end }}
 personal() {
-  (( $# )) || { ssh personal; return }
-  local cmd="$*" tty
+  local cmd="$*" tty pw=
   [[ -t 0 && -t 1 ]] && tty=-t
-  ssh $tty personal zsh -lic ${(q)cmd}
+{{- if .personalKeychainRef }}
+  pw=$(op read --no-newline {{ .personalKeychainRef | quote }} 2>/dev/null)
+{{- end }}
+  if (( $# )); then
+    DOTFILES_KEYCHAIN_PASSWORD=$pw ssh $tty personal zsh -lic ${(q)cmd}
+  else
+    DOTFILES_KEYCHAIN_PASSWORD=$pw ssh personal
+  fi
 }
 {{- end }}
 

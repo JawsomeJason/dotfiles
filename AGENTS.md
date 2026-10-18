@@ -24,10 +24,11 @@ Rules:
 - Never put a token, password or key in this repo. Put it in `~/.config/zsh/local.zsh`, or render
   it from 1Password with `onepasswordRead`.
 - Edit files here, never the copies in `~`. Preview with `dotfiles diff`, then `dotfiles apply`.
-- Per-machine answers (`work`, `gitName`, `gitEmail`, `personalHost`, `tailnetDomain`) come from
-  `home/.chezmoi.toml.tmpl`. Lines for work machines go inside `{{ if .work }}`, personal-only lines
-  inside `{{ if not .work }}`, and lines that only need a tool installed use a shell check like
-  `[[ -d ~/.cargo ]]`. Whole files only some machines get go in `home/.chezmoiignore`.
+- Per-machine answers (`work`, `gitName`, `gitEmail`, `personalHost`, `tailnetDomain`,
+  `personalKeychainRef`) come from `home/.chezmoi.toml.tmpl`. Lines for work machines go inside
+  `{{ if .work }}`, personal-only lines inside `{{ if not .work }}`, and lines that only need a tool
+  installed use a shell check like `[[ -d ~/.cargo ]]`. Whole files only some machines get go in
+  `home/.chezmoiignore`.
 - Every file in `~` has one owner. Never manage a path a layer manages; layers extend the shell
   through `~/.config/zsh/work/*.zsh`.
 - To prove a shell change is safe, run `scripts/shell-snapshot.zsh` before and after and diff the

@@ -2,10 +2,12 @@
 {{- $relay := printf "%s.%s" .personalHost .tailnetDomain -}}
 # Managed by dotfiles. `ssh personal` reaches the personal machine over the tailnet relay name, and
 # falls back to its LAN .local name when the relay port is unreachable. Both names share the .local
-# host key, so known_hosts needs one entry.
+# host key, so known_hosts needs one entry. The keychain password is sent only when the `personal`
+# function sets it for one connection.
 Match originalhost personal,{{ $h }} exec "! nc -z {{ if eq .chezmoi.os "darwin" }}-G{{ else }}-w{{ end }} 2 {{ $relay }} 22 >/dev/null 2>&1"
   HostName {{ $h }}.local
 
 Host personal {{ $h }}
   HostName {{ $relay }}
   HostKeyAlias {{ $h }}.local
+  SendEnv DOTFILES_KEYCHAIN_PASSWORD
