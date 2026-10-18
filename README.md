@@ -41,6 +41,9 @@ chezmoi init --source ~/code/dotfiles --apply
 
 To change an answer later, edit `~/.config/chezmoi/chezmoi.toml` and run `dotfiles apply`.
 
+For a work machine, or when a job starts or ends, follow `PLAYBOOK.md` in the private `dotjob`
+layer repo. It covers the rest of the setup, including the employer layer.
+
 ## Layers
 
 A machine can stack private layers on top of this public base. Each layer is its own chezmoi

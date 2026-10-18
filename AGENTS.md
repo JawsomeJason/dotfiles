@@ -3,6 +3,9 @@
 The public base of Jason's dotfiles: a chezmoi source plus the `dotfiles` command that applies it
 together with any private layers. README.md says what lives where.
 
+Setting up a work machine, or starting or leaving a job: follow `PLAYBOOK.md` in the private `dotjob`
+repo (`~/code/dotjob` once cloned).
+
 Where to look:
 
 - `home/` is the chezmoi source (see `.chezmoiroot`). chezmoi renames files on the way out:
