@@ -113,7 +113,7 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
       `Brewfile.personal` (15) on the personal machine, and the private work and employer layers on
       the work laptop.
 - [x] BlackHole removed from the personal machine (Jason ran the uninstall, which needs a password).
-- [ ] Decide whether `just` stays in the shared work layer.
+- [x] `just` stays in the shared work layer (Jason, 2026-10-18).
 
 ## 2.3: discoverability
 
