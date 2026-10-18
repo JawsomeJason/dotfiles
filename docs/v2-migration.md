@@ -61,7 +61,7 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
   6. Apply, then remove the files the old setup installed that no layer manages any more (the list
      is in the employer layer's docs).
 - [x] **Gate 2a.** Laptop diff reviewed against the earlier preview and applied. A shell snapshot
-      before and after differs only in the removed `dots` and `majel` functions and the new
+      before and after differs only in the removed `dots` function, the old per-machine ssh helper, and the new
       `personal` function.
 - [x] Personal machine cutover over `ssh personal`:
   1. Rename its checkout to `~/code/dotfiles` and point it at the public repo (pulls need no login).
@@ -72,9 +72,12 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
   5. Review the diff and apply.
 - [x] **Gate 2b.** Personal machine diff matched the preview and was applied. Its snapshot differs
       only by the new `ccp`, the removed `dots`, and per-session SSH variables.
-- [~] The personal machine's `~/.config/keychain-password` holds a wrong password: unlock fails with
-      "passphrase not correct". It failed silently before the migration too. Jason needs to rewrite
-      the file with the current login password.
+- [~] The personal machine's `~/.config/keychain-password` is empty, so the SSH unlock fails. It
+      failed silently before the migration too. Either write the current login password into it, or
+      delete it so SSH logins prompt instead.
+- [~] Old backups on the personal machine that predate this migration, such as
+      `~/.dots-backup-20261012`, may hold tokens. Review and remove them by hand.
+
 - [x] Full-history words check again, then tag `v2.0.0` and publish a release.
 - [x] **Gate 3, part 1.** Confirmed the employer layer holds every commit of the previous repo
       (10 of 10, no other refs, issues, pull requests, releases or secrets), then archived the
