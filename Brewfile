@@ -1,5 +1,4 @@
 tap "openclaw/tap"
-tap "xykong/tap"
 tap "yakitrak/yakitrak"
 # Browser automation CLI for AI agents
 brew "agent-browser"
@@ -9,6 +8,8 @@ brew "aria2"
 brew "chezmoi"
 # Cloudflare Tunnel client (formerly Argo Tunnel)
 brew "cloudflared", restart_service: :changed
+# Pack, ship and run any application as a lightweight container
+brew "docker"
 # Select default apps for documents and URL schemes on macOS
 brew "duti"
 # Play, record, convert, and stream select audio and video codecs
@@ -47,26 +48,24 @@ cask "1password"
 cask "1password-cli"
 # Calendar and task manager
 cask "amie"
-# Terminal interface for Antigravity agents
-cask "antigravity-cli"
 # Menu bar icon organiser
 cask "bartender"
 # Anthropic's official Claude AI desktop app
 cask "claude"
+# Menu bar app for monitoring AI coding assistant usage quotas
+cask "claudebar"
 # Disk space visualiser
 cask "daisydisk"
 # Window peeking utility app
 cask "dockdoor"
+# App to build and share containerised applications and microservices
+cask "docker-desktop"
 # Client for the Dropbox cloud storage service
 cask "dropbox"
 # Web browser
-cask "firefox@developer-edition"
-# Git client focusing on productivity
-cask "gitkraken"
-# Web browser
 cask "google-chrome"
-# Web browser
-cask "google-chrome@dev"
+# Client for the Google Drive storage service
+cask "google-drive"
 # Convert your caps lock key or any of your modifier keys to the hyper key
 cask "hyperkey"
 # Open-source keystroke visualiser
@@ -91,11 +90,9 @@ cask "spotify"
 cask "tailscale-app"
 # Messaging app with a focus on speed and security
 cask "telegram"
-# Terminal-based web browser
-cask "terminal-browser"
 # Open-source code editor
 cask "visual-studio-code"
 # Rust-based terminal
 cask "warp"
-# Markdown previews in Finder QuickLook with diagrams and math
-cask "xykong/tap/flux-markdown", trusted: true
+# Video communication and virtual meeting platform
+cask "zoom"
