@@ -134,4 +134,4 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
 - [ ] Device descriptions in the tailnet policy file, as comments beside `hosts` aliases.
 - [ ] Make the layers Linux-ready (templates already branch on `.chezmoi.os` where needed).
 - [ ] The multi-job workstation project lives in the shared work layer's docs.
-- [ ] A starter template for new employer layers lives in the shared work layer's `template/`.
+- [x] A starter template for new employer layers lives in the shared work layer's `template/`; `dotfiles job new` uses it.
