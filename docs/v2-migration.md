@@ -72,9 +72,9 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
   5. Review the diff and apply.
 - [x] **Gate 2b.** Personal machine diff matched the preview and was applied. Its snapshot differs
       only by the new `ccp`, the removed `dots`, and per-session SSH variables.
-- [~] The personal machine's `~/.config/keychain-password` is empty, so the SSH unlock fails. It
-      failed silently before the migration too. Either write the current login password into it, or
-      delete it so SSH logins prompt instead.
+- [~] The personal machine no longer keeps a keychain password file. Interactive SSH logins ask for
+      the login password only while the keychain is locked, so the first connection prompts once.
+      Jason confirms the second connection stays quiet.
 - [~] Old backups on the personal machine that predate this migration, such as
       `~/.dots-backup-20261012`, may hold tokens. Review and remove them by hand.
 
