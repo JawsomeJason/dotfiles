@@ -76,8 +76,8 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
       the desktop login already unlocked, with no prompt. When the keychain is really locked, the
       `personal` command's password from 1Password unlocks it; plain `ssh` asks once. No password
       file on the personal machine.
-- [~] Old backups on the personal machine that predate this migration, such as
-      `~/.dots-backup-20261012`, may hold tokens. Review and remove them by hand.
+- [x] Old pre-migration backups that held tokens moved to the Trash on both machines, along with the
+      personal machine's cutover backup. Emptying the Trash finishes it.
 
 - [x] Full-history words check again, then tag `v2.0.0` and publish a release.
 - [x] **Gate 3, part 1.** Confirmed the employer layer holds every commit of the previous repo
