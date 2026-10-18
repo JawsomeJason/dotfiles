@@ -100,10 +100,16 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
 
 ## 2.2: packages
 
-- [ ] A `Brewfile` per layer, applied with `brew bundle` only when it changes. Never an automatic
-      `brew bundle cleanup`.
-- [ ] `dotfiles install <pkg>` and `dotfiles remove <pkg>` (alias `uninstall`): run brew, update
+- [x] A `Brewfile` per layer, applied with `brew bundle install --no-upgrade` only when it changes,
+      plus a `dotfiles setup` step that installs anything still missing. Never an automatic
+      `brew bundle cleanup`. Built from both machines' installed packages: shared ones in the base,
+      personal-machine-only ones in `Brewfile.personal`, and work-laptop-only ones sorted into the
+      base, the shared work layer or the employer layer.
+- [x] `dotfiles install <pkg>` and `dotfiles remove <pkg>` (alias `uninstall`): run brew, update
       the chosen layer's Brewfile with `brew bundle add` or `remove`, commit and push.
+- [~] The personal machine is missing 21 base packages that were only on the work laptop (Mac
+      utilities, `nvm`, the zsh plugins). Its next `dotfiles sync` installs them; Jason decides
+      whether they stay in the base or move to the work layer first.
 
 ## 2.3: discoverability
 

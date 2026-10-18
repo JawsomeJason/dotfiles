@@ -1,0 +1,50 @@
+tap "alexsjones/llmfit", "https://github.com/AlexsJones/homebrew-llmfit"
+tap "alpacahq/tap"
+tap "mikkoparkkola/tap", "https://github.com/MikkoParkkola/homebrew-tap"
+tap "openhue/cli"
+tap "oven-sh/bun"
+tap "steipete/tap"
+# .NET Core
+brew "dotnet@8", link: true
+# Speech synthesizer that supports more than hundred languages and accents
+brew "espeak-ng"
+# Interact with Google Gemini AI models from the command-line
+brew "gemini-cli"
+# Run LLMs with MLX
+brew "mlx-lm", restart_service: :changed
+# Create, run, and share large language models (LLMs)
+brew "ollama", restart_service: :changed
+# General-purpose speech recognition model
+brew "openai-whisper"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
+# Port of pdftk in java
+brew "pdftk-java"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
+# Rust toolchain installer
+brew "rustup"
+# Powerful MCP Slack Server with multiple transports and smart history fetch logic
+brew "slack-mcp-server"
+# Non-interactive SSH password auth
+brew "sshpass"
+# OCR (Optical Character Recognition) engine
+brew "tesseract"
+# Convert HTML to PDF
+brew "weasyprint"
+# Port of OpenAI's Whisper model in C/C++
+brew "whisper.cpp"
+# Chromium based browser
+cask "arc"
+# Universal chat app powered by Matrix
+cask "beeper"
+# Virtual Audio Driver
+cask "blackhole-16ch"
+# Menu bar app for monitoring AI coding assistant usage quotas
+cask "claudebar"
+# Web browser
+cask "firefox"
+# Client for the Google Drive storage service
+cask "google-drive"
+# Personal AI assistant
+cask "openclaw"

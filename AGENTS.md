@@ -20,6 +20,9 @@ Where to look:
   `cli/lib/prompt.sh` (`ask`, `confirm`, `require`), which skip prompts without a terminal or with
   `--yes`, and give every question a flag in `cli/commands/setup.sh`. `install.sh` bootstraps a
   fresh Mac and hands off to setup.
+- `Brewfile` and `Brewfile.personal` list Homebrew packages; change them with `dotfiles install`
+  and `dotfiles remove`, which also commit. `home/run_onchange_after_brew-bundle.sh.tmpl` installs
+  from them when they change; `cli/lib/brew.sh` finds every layer's Brewfile.
 - `scripts/` holds checks: `check-secrets.sh`, `check-words.sh` and `shell-snapshot.zsh`.
 - `docs/v2-migration.md` tracks the current migration and roadmap. Update it when a step lands.
 

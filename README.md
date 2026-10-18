@@ -16,6 +16,11 @@ This is version 2. The bash-era setup from 2013 to 2021 lives at the
 - `cd "$(dotfiles path)"` goes to this repo, so you can commit and push.
 - `dotfiles help` lists every command, including plugins.
 
+- `dotfiles install <package>` installs with Homebrew and records it in the base `Brewfile`, so
+  every machine gets it; `-l job` or `-l <employer>` keeps it to work machines and `--personal`
+  to personal ones. `dotfiles remove <package>` (or `uninstall`) takes it out of whichever
+  Brewfile lists it and uninstalls it. Both commit and push the Brewfile they change.
+
 Add `-n` to preview `apply` or `sync`, `-l <layer>` to act on one layer, and `-v` to see each
 chezmoi and git command. Edit files in this repo, not the copies in your home folder;
 `dotfiles apply` overwrites those copies.
@@ -100,6 +105,14 @@ Personal machines only: the Go, Cargo, rustup and bun paths, the openclaw comple
 
 Machine-local and never in git: `~/.config/zsh/local.zsh`, which `~/.zshrc` loads. It holds every
 token and anything else only one machine needs, and has mode 600.
+
+## Packages
+
+Each layer keeps a `Brewfile` at its repo root: this repo's lists what every Mac gets, and its
+`Brewfile.personal` adds what only personal machines get. Whenever a Brewfile changes,
+`dotfiles apply` runs `brew bundle install --no-upgrade` for it. Nothing is ever upgraded or
+removed automatically; `dotfiles remove` is the only way a package leaves. `dotfiles setup`
+installs anything a Brewfile lists that is still missing.
 
 ## Secrets
 

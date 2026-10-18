@@ -1,0 +1,15 @@
+#!/bin/sh
+# Installs what this layer's Brewfile lists whenever it changes, plus Brewfile.personal on
+# personal machines. Never upgrades or removes anything; if an install fails,
+# `dotfiles setup` retries it.
+# Brewfile {{ joinPath .chezmoi.workingTree "Brewfile" | include | sha256sum }}
+{{- if not .work }}
+# Brewfile.personal {{ joinPath .chezmoi.workingTree "Brewfile.personal" | include | sha256sum }}
+{{- end }}
+command -v brew >/dev/null 2>&1 || exit 0
+brew bundle install --no-upgrade --file {{ joinPath .chezmoi.workingTree "Brewfile" | quote }} ||
+  echo "dotfiles: some Brewfile packages did not install; dotfiles setup retries them" >&2
+{{- if not .work }}
+brew bundle install --no-upgrade --file {{ joinPath .chezmoi.workingTree "Brewfile.personal" | quote }} ||
+  echo "dotfiles: some Brewfile.personal packages did not install; dotfiles setup retries them" >&2
+{{- end }}
