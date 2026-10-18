@@ -77,7 +77,7 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
       `personal` command's password from 1Password unlocks it; plain `ssh` asks once. No password
       file on the personal machine.
 - [x] Old pre-migration backups that held tokens moved to the Trash on both machines, along with the
-      personal machine's cutover backup. Emptying the Trash finishes it.
+      personal machine's cutover backup, then deleted when Jason emptied the Trash on both.
 
 - [x] Full-history words check again, then tag `v2.0.0` and publish a release.
 - [x] **Gate 3, part 1.** Confirmed the employer layer holds every commit of the previous repo
