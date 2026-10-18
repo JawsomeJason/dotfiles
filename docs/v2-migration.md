@@ -112,8 +112,7 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
       gets them. Both machines satisfy every Brewfile they use: the base (48 packages) everywhere,
       `Brewfile.personal` (15) on the personal machine, and the private work and employer layers on
       the work laptop.
-- [~] BlackHole is out of every Brewfile but still installed on the personal machine; its
-      uninstaller needs a password: `brew uninstall --cask blackhole-16ch`.
+- [x] BlackHole removed from the personal machine (Jason ran the uninstall, which needs a password).
 - [ ] Decide whether `just` stays in the shared work layer.
 
 ## 2.3: discoverability
