@@ -96,3 +96,5 @@ cask "visual-studio-code"
 cask "warp"
 # Video communication and virtual meeting platform
 cask "zoom"
+# Tool for working with usage-spec CLIs
+brew "usage"
