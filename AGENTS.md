@@ -11,8 +11,13 @@ Where to look:
 - `home/` is the chezmoi source (see `.chezmoiroot`). chezmoi renames files on the way out:
   `dot_zshrc.tmpl` becomes `~/.zshrc`, `private_` sets mode 600 or 700, `.tmpl` means a Go
   template, `symlink_` writes a link, and `modify_` scripts rewrite an existing file from stdin.
-- `cli/dotfiles` is the command. Each subcommand is one file in `cli/commands/<name>.sh`, whose
-  first comment line is its usage and second line its summary; `dotfiles help` reads them.
+- `cli/dotfiles` is the command. Each subcommand is one file in `cli/commands/<name>.sh` that starts
+  with a `#USAGE` block: its [usage](https://usage.jdx.dev) spec. `cli/lib/spec.sh` assembles the
+  full spec (`dotfiles __spec`) from those blocks and from plugins' `#USAGE` lines, read without
+  running them. Help, the interactive menu (`cli/commands/_menu.sh`), `docs/cli.md` and zsh
+  completion all come from it. After changing a spec, run `scripts/gen-docs.sh`; CI fails when the
+  generated files are stale or the spec does not lint. For an MCP view of every command, run
+  `dotfiles __spec > /tmp/dotfiles.kdl` and point a client at `usage mcp -f /tmp/dotfiles.kdl`.
   Shared helpers, including the layer list, are in `cli/lib/common.sh`. The CLI must run on stock
   macOS bash 3.2: no associative arrays, no `mapfile`, no `${var,,}`.
 - `cli/setup/NN-<step>.sh` are `dotfiles setup`'s steps, run in name order. Each sets `title` and

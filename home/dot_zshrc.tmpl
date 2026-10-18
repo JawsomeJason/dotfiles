@@ -87,6 +87,9 @@ alias cc='claude --dangerously-skip-permissions{{ if .work }} --chrome{{ end }}'
 # the first message
 ccp() { cc --append-system-prompt "At the start of this session, after the jason-mode skill loads, invoke the pstack:poteto-mode skill before doing anything else. Where jason-mode and poteto-mode conflict, jason-mode wins." "/personal:jason-mode $*"; }
 
+# Completions for dotfiles itself (generated from its usage spec)
+fpath=(~/.config/zsh/completions $fpath)
+
 # >>> grok installer >>>
 if [[ -d ~/.grok ]]; then
   export PATH="$HOME/.grok/bin:$PATH"

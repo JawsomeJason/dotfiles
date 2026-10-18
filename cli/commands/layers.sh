@@ -1,5 +1,6 @@
-# usage: dotfiles layers [--names]
-# Lists the layers in apply order with their repo, branch and whether they have local changes.
+#USAGE cmd "layers" help="List the layers in apply order with their repo, branch and local changes" {
+#USAGE   flag "--names" help="Print only the layer names, one per line"
+#USAGE }
 cmd_layers() {
   if [ "${1:-}" = --names ]; then layers | cut -f1; return; fi
   layers | while IFS="$TAB" read -r name cfg; do

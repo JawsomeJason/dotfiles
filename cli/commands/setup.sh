@@ -1,5 +1,19 @@
-# usage: dotfiles setup [-n] [-y] [--redo <step>|--redo-all] [--skip <step>] [--work yes|no] [--git-name <name>] [--git-email <email>] [--personal-email <email>] [--personal-host <host>] [--tailnet-domain <domain>] [--keychain-ref <op://...>] [--job-repo <owner/repo>]
-# Sets up this machine one step at a time, asking only for what is missing. Safe to rerun.
+#USAGE cmd "setup" help="Set up this machine one step at a time, asking only for what is missing; safe to rerun" effect="write" {
+#USAGE   flag "-y --yes" help="Take the default for every question instead of asking"
+#USAGE   flag "--redo <step>" var=#true help="Run this step's fix even if its check passes"
+#USAGE   flag "--redo-all" help="Run every step's fix"
+#USAGE   flag "--skip <step>" var=#true help="Skip this step"
+#USAGE   flag "--work <work>" help="Whether this is a work machine" {
+#USAGE     choices "yes" "no"
+#USAGE   }
+#USAGE   flag "--git-name <name>" help="Git author name"
+#USAGE   flag "--git-email <email>" help="Git author email (the employer's address on a work machine)"
+#USAGE   flag "--personal-email <email>" help="Personal git email for personal repos"
+#USAGE   flag "--personal-host <host>" help="Personal machine's short hostname, for ssh personal"
+#USAGE   flag "--tailnet-domain <domain>" help="Domain that reaches tailnet machines by name"
+#USAGE   flag "--keychain-ref <ref>" help="1Password op:// reference to the personal machine's login password"
+#USAGE   flag "--job-repo <repo>" help="Shared work layer repo, as owner/name"
+#USAGE }
 #
 # Each step is a file in cli/setup/NN-name.sh with a title, a check that reads the real state, and
 # a fix. A step runs only when its check fails, so a stopped run picks up where it left off.

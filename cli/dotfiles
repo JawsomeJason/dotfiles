@@ -18,13 +18,14 @@ DRY_RUN=0 VERBOSE=0 ONLY_LAYER=
 
 # One pass: the first word is the command. Global options work anywhere for built-ins; for a plugin,
 # everything after its name passes through untouched. Other options go to the built-in itself.
-cmd='' want_help=0 rest=()
+cmd='' want_help=0 want_menu=0 rest=()
 while [ $# -gt 0 ]; do
   case $1 in
     -h|--help) want_help=1 ;;
     -V|--version) [ -n "$cmd" ] || cmd=version ;;
     -n|--dry-run) DRY_RUN=1 ;;
     -v|--verbose) VERBOSE=1 ;;
+    -i|--interactive) want_menu=1 ;;
     -l|--layer) [ $# -ge 2 ] || die "--layer needs a name"; ONLY_LAYER=$2; shift ;;
     --layer=*) ONLY_LAYER=${1#--layer=} ;;
     --) shift; rest+=("$@"); break ;;
@@ -43,10 +44,15 @@ if [ $want_help = 1 ]; then
   if [ -n "$cmd" ] && [ "$cmd" != help ] && [ -f "$DOTFILES_CLI/commands/$cmd.sh" ]; then rest=("$cmd"); else rest=(); fi
   cmd=help
 fi
+# Bare dotfiles in a terminal opens the menu; in scripts and pipes it stays `status`
+if [ $want_menu = 1 ] || { [ -z "$cmd" ] && [ -t 0 ] && [ -t 1 ] && command -v gum >/dev/null 2>&1; }; then
+  cmd=_menu
+fi
 cmd=${cmd:-status}
 set -- ${rest[@]+"${rest[@]}"}
 export DRY_RUN VERBOSE ONLY_LAYER
 
+case $cmd in __spec) cmd=_spec ;; _menu) ;; _*) die "unknown command '$cmd' (try dotfiles help)" ;; esac
 if [ -f "$DOTFILES_CLI/commands/$cmd.sh" ]; then
   . "$DOTFILES_CLI/commands/$cmd.sh"
   "cmd_$cmd" "$@"

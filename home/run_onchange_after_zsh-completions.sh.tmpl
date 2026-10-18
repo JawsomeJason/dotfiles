@@ -1,0 +1,4 @@
+#!/bin/sh
+# Clears zsh's completion cache when the dotfiles completion changes, so the next shell loads it
+# _dotfiles {{ include "private_dot_config/zsh/completions/_dotfiles" | sha256sum }}
+rm -f "$HOME/.zcompdump"

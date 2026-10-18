@@ -1,5 +1,4 @@
-# usage: dotfiles apply [-n] [-l <layer>]
-# Writes the base, then each layer, into the home folder. Stops first if two layers own one file.
+#USAGE cmd "apply" help="Write the base, then each layer, into the home folder; stops first if two layers own one file" effect="write"
 cmd_apply() {
   check_collisions
   flags=

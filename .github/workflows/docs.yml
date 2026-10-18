@@ -1,0 +1,15 @@
+name: docs
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install usage
+        run: curl -fsSL https://github.com/jdx/usage/releases/download/v7.0.2/usage-x86_64-unknown-linux-gnu.tar.gz | sudo tar -xz -C /usr/local/bin usage
+      - name: Lint the spec and check generated docs and completion
+        run: scripts/gen-docs.sh --check

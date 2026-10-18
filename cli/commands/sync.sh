@@ -1,5 +1,4 @@
-# usage: dotfiles sync [-n] [-l <layer>]
-# Pulls each layer's repo (fast-forward only), then applies them all. With -n, fetches and previews.
+#USAGE cmd "sync" help="Pull each layer's repo (fast-forward only), then apply them all" effect="write"
 cmd_sync() {
   selected_layers | while IFS="$TAB" read -r name cfg; do
     root=$(layer_root "$cfg") || die "$name: no git checkout behind its source"

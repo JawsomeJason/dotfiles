@@ -117,21 +117,22 @@ Status legend: `[x]` done, `[ ]` to do, `[~]` waiting on Jason.
 
 ## 2.3: discoverability
 
-- [ ] [usage](https://github.com/jdx/usage) spec lines in every command file, generating help,
+- [x] [usage](https://github.com/jdx/usage) spec lines in every command file, generating help,
       `docs/cli.md`, zsh completions and an MCP listing. `usage lint` in CI.
-- [ ] Bare `dotfiles` in a terminal, or `dotfiles -i`, opens a menu of every command built from the
+- [x] Bare `dotfiles` in a terminal, or `dotfiles -i`, opens a menu of every command built from the
       specs with [gum](https://github.com/charmbracelet/gum). Picking one prompts for its options,
       prints the equivalent command, and runs it. Plugins join by printing a spec with
       `--usage-spec`; plugins without one get a free-form prompt.
-- [ ] `dotfiles doctor`: sources present, remotes, file collisions, forbidden words, env file,
+- [x] `dotfiles doctor`: sources present, remotes, file collisions, forbidden words, env file,
       Brewfile drift. Reports only.
-- [ ] `dotfiles edit [layer]`, and `dotfiles hosts` joining a local `devices` map with
+- [x] `dotfiles edit [layer]`, and `dotfiles hosts` joining a local `devices` map with
       `tailscale status --json`.
 
 ## Later
 
 - [ ] Review `v1.0.0` for anything worth bringing into 2.x, such as the macOS defaults.
 - [ ] Device descriptions in the tailnet policy file, as comments beside `hosts` aliases.
+      (`dotfiles hosts` already shows them from `~/.config/dotfiles/devices`.)
 - [ ] Make the layers Linux-ready (templates already branch on `.chezmoi.os` where needed).
 - [ ] The multi-job workstation project lives in the shared work layer's docs.
 - [x] A starter template for new employer layers lives in the shared work layer's `template/`; `dotfiles job new` uses it.

@@ -1,5 +1,9 @@
-# usage: dotfiles install [-n] [-l <layer>] [--personal] [--cask] [--no-push] <package>...
-# Installs packages with Homebrew and records them in a layer's Brewfile, then commits and pushes it.
+#USAGE cmd "install" help="Install Homebrew packages and record them in a layer's Brewfile, then commit and push" effect="write" {
+#USAGE   flag "--personal" help="Record in the base's Brewfile.personal (personal machines only)"
+#USAGE   flag "--cask" help="Treat every package as a cask (casks are otherwise detected)"
+#USAGE   flag "--no-push" help="Commit but do not push"
+#USAGE   arg "<package>..." help="Homebrew formula or cask names"
+#USAGE }
 #
 # The base layer is the default, so the package lands on every machine; -l job or -l <employer>
 # keeps it to work machines, and --personal to personal machines (the base's Brewfile.personal).

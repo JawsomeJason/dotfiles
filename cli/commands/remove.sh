@@ -1,5 +1,9 @@
-# usage: dotfiles remove [-n] [-l <layer>] [--keep-installed] [--no-push] <package>...
-# Removes packages from whichever Brewfiles list them, uninstalls them, then commits and pushes.
+#USAGE cmd "remove" help="Remove packages from whichever Brewfiles list them, uninstall them, then commit and push" effect="destructive" {
+#USAGE   alias "uninstall"
+#USAGE   flag "--keep-installed" help="Only edit the Brewfile; leave the package installed"
+#USAGE   flag "--no-push" help="Commit but do not push"
+#USAGE   arg "<package>..." help="Homebrew formula or cask names"
+#USAGE }
 #
 # Every Brewfile on this machine is searched unless -l names one layer. --keep-installed only
 # edits the Brewfile. Also available as dotfiles uninstall.

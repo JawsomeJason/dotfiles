@@ -8,13 +8,21 @@ This is version 2. The bash-era setup from 2013 to 2021 lives at the
 
 ## Everyday use
 
-- `dotfiles` shows what differs between the repos and your home folder.
+- `dotfiles` in a terminal opens a menu of every command: pick one, pick the options you want, and
+  it shows the equivalent command line before running it. In scripts, bare `dotfiles` is `status`.
+- `dotfiles status` shows what differs between the repos and your home folder.
 - `dotfiles diff` shows the exact changes `dotfiles apply` would make.
 - `dotfiles apply` writes the base, then each layer, into your home folder.
 - `dotfiles sync` pulls every layer's repo, then applies.
 - `dotfiles layers` lists the layers on this machine and whether they have local changes.
 - `cd "$(dotfiles path)"` goes to this repo, so you can commit and push.
-- `dotfiles help` lists every command, including plugins.
+- `dotfiles doctor` checks every layer, the machine's answers, forbidden words and Homebrew drift,
+  and reports what needs fixing without changing anything.
+- `dotfiles edit [layer]` opens a layer's repo in your editor.
+- `dotfiles hosts` lists your tailnet machines with descriptions from `~/.config/dotfiles/devices`
+  (one `name = description` per line, kept on each machine) and whether each is online.
+- `dotfiles help` lists every command, including plugins. Every command is described in
+  [`docs/cli.md`](docs/cli.md), and zsh completes commands, options and layer names.
 
 - `dotfiles install <package>` installs with Homebrew and records it in the base `Brewfile`, so
   every machine gets it; `-l job` or `-l <employer>` keeps it to work machines and `--personal`
