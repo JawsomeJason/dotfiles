@@ -86,10 +86,13 @@ alias dev='run dev'
 alias refresh='git pull && nvm i && nvm use && npm install'   # sync branch, node version, deps
 
 # claude
-alias cc='claude --dangerously-skip-permissions{{ if .work }} --chrome{{ end }}'
-# cc in jason-mode with poteto-mode; jason-mode only starts from its slash command, so it goes in as
-# the first message
-ccp() { cc --append-system-prompt "At the start of this session, after the jason-mode skill loads, invoke the pstack:poteto-mode skill before doing anything else. Where jason-mode and poteto-mode conflict, jason-mode wins." "/personal:jason-mode $*"; }
+# claude in jason-mode, which fires poteto-mode itself; jason-mode only starts from its slash command,
+# so it goes in as the first message. Leading flags (cc --continue, cc -r) pass straight through.
+# `function` keeps a stale `alias cc` from breaking a re-source.
+function cc {
+  local claude=(claude --dangerously-skip-permissions{{ if .work }} --chrome{{ end }})
+  if [[ $1 == -* ]]; then "${claude[@]}" "$@"; else "${claude[@]}" "/personal:jason-mode $*"; fi
+}
 
 # >>> grok installer >>>
 if [[ -d ~/.grok ]]; then
