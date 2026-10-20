@@ -1,3 +1,7 @@
+{{ if not .work }}
+.gitconfig-personal
+{{ end }}
+
 {{ if .work }}
 .zshenv
 {{ end }}

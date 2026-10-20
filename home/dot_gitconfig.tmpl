@@ -11,4 +11,9 @@
 [gitbutler]
 	aiModelProvider = openai
 	diffLengthLimit = 10000
+# Personal repos commit with the GitHub no-reply address, never the work email.
+[includeIf "hasconfig:remote.*.url:https://github.com/JawsomeJason/**"]
+	path = ~/.gitconfig-personal
+[includeIf "hasconfig:remote.*.url:git@github.com:JawsomeJason/**"]
+	path = ~/.gitconfig-personal
 {{- end }}
