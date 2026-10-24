@@ -89,7 +89,7 @@ _lcars_git() {
   if (( changed )); then
     stats=$(git diff HEAD --shortstat 2>/dev/null)
     [[ $stats =~ '([0-9]+) insertion' ]] && diff+="%F{$LCARS[tanoi]}+$match[1]"
-    [[ $stats =~ '([0-9]+) deletion' ]] && diff+="%F{red}-$match[1]"
+    [[ $stats =~ '([0-9]+) deletion' ]] && diff+="%F{$LCARS[red]}-$match[1]"
   fi
   (( untracked )) && diff+="%F{yellow}+$untracked"
   (( ahead )) && diff+="%F{cyan}↑$ahead"
