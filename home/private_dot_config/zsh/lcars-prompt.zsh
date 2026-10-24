@@ -16,7 +16,7 @@ zmodload zsh/datetime
 
 typeset -gA LCARS=(
   orange '#ff9900' gold '#ffcc66' lavender '#cc99cc' blue '#9999ff' ice '#99ccff'
-  violet '#ddaadd' green '#99cc66' red '#ff2200' gray '#8888aa' dim '#3a3a4a' white '#ffffff'
+  violet '#cc99ff' green '#99cc66' red '#cc6666' gray '#9999cc' dim '#333333' white '#ffffff'
 )
 LCARS_FETCH_MINUTES=5    # how stale the last git fetch can get before a background one
 LCARS_PR_MINUTES=2       # how stale the cached PR status can get before gh refreshes it
