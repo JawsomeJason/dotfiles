@@ -16,7 +16,7 @@ zmodload zsh/datetime
 
 typeset -gA LCARS=(
   orange '#ff9900' gold '#ffcc66' lavender '#cc99cc' blue '#9999ff' ice '#99ccff'
-  violet '#cc99ff' green '#99cc66' red '#cc6666' gray '#9999cc' dim '#333333' white '#ffffff'
+  hopbush '#cc6699' tanoi '#ffcc99' red '#cc6666' gray '#9999cc' dim '#333333' canary '#ffff99'
 )
 LCARS_FETCH_MINUTES=5    # how stale the last git fetch can get before a background one
 LCARS_PR_MINUTES=2       # how stale the cached PR status can get before gh refreshes it
@@ -52,8 +52,8 @@ _lcars_prompt() {
     (( secs >= 60 )) && _lcars_pill $LCARS[gray] DUR "$(( secs / 60 ))m $(( secs % 60 ))s" ||
       { (( secs >= LCARS_DUR_SECONDS )) && _lcars_pill $LCARS[gray] DUR "${secs}s" }
   fi
-  (( $#jobstates )) && _lcars_pill $LCARS[violet] JOBS $#jobstates
-  (( code )) && _lcars_pill $LCARS[red] ERR $code '' $LCARS[white]
+  (( $#jobstates )) && _lcars_pill $LCARS[hopbush] JOBS $#jobstates
+  (( code )) && _lcars_pill $LCARS[red] ERR $code '' $LCARS[canary]
   _lcars_layout
 }
 
@@ -88,7 +88,7 @@ _lcars_git() {
   [[ ${(M)st:#\# branch.ab *} =~ '\+([0-9]+) -([0-9]+)' ]] && ahead=$match[1] behind=$match[2]
   if (( changed )); then
     stats=$(git diff HEAD --shortstat 2>/dev/null)
-    [[ $stats =~ '([0-9]+) insertion' ]] && diff+="%F{green}+$match[1]"
+    [[ $stats =~ '([0-9]+) insertion' ]] && diff+="%F{$LCARS[tanoi]}+$match[1]"
     [[ $stats =~ '([0-9]+) deletion' ]] && diff+="%F{red}-$match[1]"
   fi
   (( untracked )) && diff+="%F{yellow}+$untracked"
@@ -120,7 +120,7 @@ _lcars_pr() {
     *:FAIL:*)            stat=FAIL color=$LCARS[red] ;;
     *:CHANGES_REQUESTED) stat=CHGS color=$LCARS[red] ;;
     *:PEND:*)            stat=PEND ;;
-    *:APPROVED)          stat=APPR color=$LCARS[green] ;;
+    *:APPROVED)          stat=APPR color=$LCARS[ice] ;;
     *)                   stat=OPEN ;;
   esac
   _lcars_pill $LCARS[ice] PR "#$pr[1] $stat" "$color" '' $pr[6]
