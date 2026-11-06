@@ -89,10 +89,13 @@ alias refresh='git pull && nvm i && nvm use && npm install'   # sync branch, nod
 # cc starts plain claude; jcc starts it in jawsome-mode, which fires poteto-mode itself. jawsome-mode only starts
 # from its slash command, so jcc sends it as the first message. Leading flags (cc --continue, jcc -r) pass straight
 # through. `function` keeps a stale alias from breaking a re-source.
-function cc {
-  claude --dangerously-skip-permissions{{ if .work }} --chrome{{ end }} "$@"
+{{ if .work }}# CC_PROFILE picks the aimux profile: its own login, shared skills/agents/plugins.
+# ccr and jcc reuse cc's flags instead of repeating them.
+{{ end }}function cc {
+  {{ if .work }}aimux run "${CC_PROFILE:-jase}"{{ else }}claude{{ end }} --dangerously-skip-permissions{{ if .work }} --chrome{{ end }} "$@"
 }
-function jcc {
+{{ if .work }}function ccr { CC_PROFILE=work cc "$@" }
+{{ end }}function jcc {
   if [[ $1 == -* ]]; then cc "$@"; else cc "/jawsome-mode $*"; fi
 }
 
