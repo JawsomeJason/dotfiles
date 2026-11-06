@@ -95,6 +95,7 @@ alias refresh='git pull && nvm i && nvm use && npm install'   # sync branch, nod
   {{ if .work }}aimux run "${CC_PROFILE:-jase}"{{ else }}claude{{ end }} --dangerously-skip-permissions{{ if .work }} --chrome{{ end }} "$@"
 }
 {{ if .work }}function ccr { CC_PROFILE=work cc "$@" }
+function ccz { CC_PROFILE=z cc "$@" }   # GLM via z.ai: no Remote Control, no usage in the band
 {{ end }}function jcc {
   if [[ $1 == -* ]]; then cc "$@"; else cc "/jawsome-mode $*"; fi
 }
