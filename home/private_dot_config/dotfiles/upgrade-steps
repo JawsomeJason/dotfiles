@@ -1,0 +1,18 @@
+# Steps for `upgrade` (zsh), `dotfiles doctor` and `clean`. One per line: id, the tool that must be
+# installed, then the command (split on spaces, no quoting). {greedy} becomes --greedy under
+# `upgrade run --greedy`, else nothing. Order is run order.
+brew      brew      brew upgrade {greedy}
+mas       mas       mas upgrade
+uv-tools  uv        uv tool upgrade --all
+pipx      pipx      pipx upgrade-all
+npm       npm       npm update -g
+pnpm      pnpm      pnpm update -g
+bun       bun       bun update -g
+skills    npx       npx -y skills update -g -y
+gh-ext    gh        gh extension upgrade --all
+mise      mise      mise upgrade
+asdf      asdf      asdf plugin update --all
+rustup    rustup    rustup update
+cargo     cargo     cargo install-update -a
+composer  composer  composer global update
+tldr      tldr      tldr --update

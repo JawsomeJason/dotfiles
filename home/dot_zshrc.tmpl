@@ -85,6 +85,90 @@ alias run='npm run'
 alias dev='run dev'
 alias refresh='git pull && nvm i && nvm use && npm install'   # sync branch, node version, deps
 
+# upgrade: update every package manager and tool in ~/.config/dotfiles/upgrade-steps (the same table `dotfiles doctor`
+# reads). Bare `upgrade` prints usage and runs nothing. A failing step does not stop the rest. Brew also covers uv,
+# pnpm, bun, nvm, gh, mise and chezmoi themselves when they came from brew. Not covered on purpose: nvm-managed node
+# versions (moving versions strands the npm -g packages; run `nvm install --lts` yourself).
+function upgrade {
+  local table=${DOTFILES_UPGRADE_STEPS:-$HOME/.config/dotfiles/upgrade-steps}
+  local u_main=$'usage: upgrade <list|run> [options]\n  list [--missing]    installed steps and their commands; --missing: steps whose tool is not installed\n  run [step...]       upgrade every installed step, or only the named ones\n    --greedy          also upgrade self-updating casks (brew)\n    --skip <step>     leave a step out (repeatable)\n  -h, --help          this text; every verb takes -h too'
+  local u_list=$'usage: upgrade list [--missing]\n  Print each installed step: id, then the command it runs.\n  --missing   print the steps whose tool is not installed instead: id, then the tool'
+  local u_run=$'usage: upgrade run [--greedy] [--skip <step>]... [step...]\n  Run every installed step, or only the named ones. A failing step does not stop the rest.\n  A named step whose tool is missing is reported and counts as a failure.\n  --greedy       add --greedy to the brew step (self-updating casks)\n  --skip <step>  leave a step out (repeatable)'
+  local verb=${1:-}; (( $# )) && shift
+  local id tool cmd
+  [[ -r $table || -z $verb || $verb == -h || $verb == --help ]] || { print -ru2 "upgrade: no step table at $table"; return 1 }
+  case $verb in
+    ''|-h|--help) print -r -- $u_main; return 0 ;;
+    list)
+      local missing=0
+      while (( $# )); do
+        case $1 in
+          -h|--help) print -r -- $u_list; return 0 ;;
+          --missing) missing=1 ;;
+          *) print -ru2 "upgrade list: unknown option $1"; print -ru2 -r -- $u_list; return 2 ;;
+        esac; shift
+      done
+      while read -r id tool cmd; do
+        [[ -z $id || $id == \#* ]] && continue
+        if (( $+commands[$tool] )); then (( missing )) || print -r -- "$id	${${cmd//\{greedy\}/}%% #}"
+        else (( missing )) && print -r -- "$id	$tool"; fi
+      done < $table
+      return 0 ;;
+    run)
+      local greedy= names=() skip=() failed=() skipped=() absent=() known=() g=
+      while (( $# )); do
+        case $1 in
+          -h|--help) print -r -- $u_run; return 0 ;;
+          --greedy) greedy=1 ;;
+          --skip) (( $# > 1 )) || { print -ru2 "upgrade run: --skip needs a step"; print -ru2 -r -- $u_run; return 2 }; skip+=($2); shift ;;
+          -*) print -ru2 "upgrade run: unknown option $1"; print -ru2 -r -- $u_run; return 2 ;;
+          *) names+=($1) ;;
+        esac; shift
+      done
+      while read -r id tool cmd; do [[ -z $id || $id == \#* ]] || known+=($id); done < $table
+      for id in $names $skip; do
+        (( ${known[(Ie)$id]} )) || { print -ru2 "upgrade run: no step named $id (see upgrade list)"; return 2 }
+      done
+      [[ -n $greedy ]] && g=--greedy
+      while read -r id tool cmd; do
+        [[ -z $id || $id == \#* ]] && continue
+        (( ${#names} )) && (( ! ${names[(Ie)$id]} )) && continue
+        (( ${skip[(Ie)$id]} )) && continue
+        if (( ! $+commands[$tool] )); then
+          (( ${#names} )) && absent+=($id) || skipped+=($id); continue
+        fi
+        print -P "%F{cyan}==> $id%f"
+        cmd=${cmd//\{greedy\}/$g}
+        ${=cmd} || failed+=($id)
+      done < $table
+      (( ${#skipped} )) && print -P "%F{yellow}skipped (not installed): ${skipped[*]}%f"
+      (( ${#absent} )) && print -P "%F{red}not installed: ${absent[*]}%f"
+      (( ${#failed} )) && print -P "%F{red}failed: ${failed[*]}%f"
+      (( ${#failed} + ${#absent} )) && return 1
+      print -P "%F{green}done%f" ;;
+    *) print -ru2 "upgrade: unknown verb $verb"; print -ru2 -r -- $u_main; return 2 ;;
+  esac
+}
+
+# clean: free disk with dotclaude's clean command (`clean -h`), from the checkout or else the installed plugin.
+# Without it, `clean run` only prunes package caches, each with its own tool, skipping any that is not installed;
+# any other call just says so, so `clean -h` never deletes anything.
+function clean {
+  local s=~/code/dotclaude/plugins/clean/skills/clean/scripts/clean.sh
+  [[ -f $s ]] || s=(${CLAUDE_CONFIG_DIR:-$HOME/.claude}/plugins/cache/*/clean/*/skills/clean/scripts/clean.sh(Nom[1]))
+  [[ -n $s ]] && { bash "$s" "$@"; return }
+  print -P "%F{yellow}The full clean tool is not installed; \`clean run\` prunes package caches only.%f"
+  [[ $1 == run ]] || return 0
+  local t
+  for t in 'brew cleanup --prune=all' 'uv cache clean' 'npm cache verify' 'pnpm store prune' \
+           'cd "$(mktemp -d)" && echo {} > package.json && bun pm cache rm' 'pip cache purge'; do
+    local tool=${${t##*&& }%% *}
+    (( $+commands[$tool] )) || { print "skip $tool: not installed"; continue }
+    print -P "%F{cyan}==> $tool%f"
+    ( eval "$t" ) || print -P "%F{red}$tool failed%f"
+  done
+}
+
 # claude
 # cc starts plain claude; jcc starts it in jawsome-mode, which fires poteto-mode itself. jawsome-mode only starts
 # from its slash command, so jcc sends it as the first message. Leading flags (cc --continue, jcc -r) pass straight
@@ -99,14 +183,6 @@ function ccz { CC_PROFILE=z cc "$@" }   # GLM via z.ai: no Remote Control, no us
 {{ end }}function jcc {
   if [[ $1 == -* ]]; then cc "$@"; else cc "/jawsome-mode $*"; fi
 }
-
-# >>> grok installer >>>
-if [[ -d ~/.grok ]]; then
-  export PATH="$HOME/.grok/bin:$PATH"
-  fpath=(~/.grok/completions/zsh $fpath)
-fi
-autoload -Uz compinit && compinit -C
-# <<< grok installer <<<
 {{- if not .work }}
 
 [[ -r ~/.openclaw/completions/openclaw.zsh ]] && source ~/.openclaw/completions/openclaw.zsh

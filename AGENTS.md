@@ -28,7 +28,7 @@ Where to look:
 - `Brewfile` and `Brewfile.personal` list Homebrew packages; change them with `dotfiles install`
   and `dotfiles remove`, which also commit. `home/run_onchange_after_brew-bundle.sh.tmpl` installs
   from them when they change; `cli/lib/brew.sh` finds every layer's Brewfile.
-- `scripts/` holds checks: `check-secrets.sh`, `check-words.sh` and `shell-snapshot.zsh`.
+- `scripts/` holds checks: `check-secrets.sh`, `check-words.sh`, `shell-snapshot.zsh` and `test-upgrade.zsh` (runs the `upgrade` function against stub tools; its step table is `home/private_dot_config/dotfiles/upgrade-steps`).
 - `docs/v2-migration.md` tracks the current migration and roadmap. Update it when a step lands.
 
 Rules:
