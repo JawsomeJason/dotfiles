@@ -71,6 +71,17 @@ cmd_doctor() {
     else info "installed but in no Brewfile (dotfiles install to keep, dotfiles remove to drop):"; echo "$extra" | sed 's/^/        /'; fi
   fi
 
+  echo "upgrade steps"
+  steps=${DOTFILES_UPGRADE_STEPS:-$HOME/.config/dotfiles/upgrade-steps}
+  if [ -r "$steps" ]; then
+    absent=0
+    while read -r id tool _; do
+      case $id in ''|'#'*) continue ;; esac
+      command -v "$tool" >/dev/null 2>&1 || { info "upgrade skips $id: $tool is not installed"; absent=1; }
+    done < "$steps"
+    [ $absent = 0 ] && ok "every upgrade step has its tool"
+  else info "${steps/#$HOME/~} is missing (dotfiles apply writes it)"; fi
+
   echo
   if [ $problems -eq 0 ]; then echo "All good."; else echo "$problems thing(s) to fix."; return 1; fi
 }
