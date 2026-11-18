@@ -16,10 +16,10 @@ zmodload zsh/datetime
 
 # Colors and pill drawing come from the LCARS design system when it's cloned (LCARS_DS), and from
 # the built-in copy below when it isn't. Pills name roles (accent, alert, ...), never raw colors.
-if [[ -r ${LCARS_DS:-$HOME/code/lcars-design-system}/impl/shell/pill.sh ]]; then
+if [[ -r ${LCARS_DS:-$HOME/code/personal/lcars-design-system}/impl/shell/pill.sh ]]; then
   typeset -g LCARS_TARGET=zsh
-  source ${LCARS_DS:-$HOME/code/lcars-design-system}/impl/shell/palette.zsh
-  source ${LCARS_DS:-$HOME/code/lcars-design-system}/impl/shell/pill.sh
+  source ${LCARS_DS:-$HOME/code/personal/lcars-design-system}/impl/shell/palette.zsh
+  source ${LCARS_DS:-$HOME/code/personal/lcars-design-system}/impl/shell/pill.sh
 else
   # The TNG palette's roles, and a renderer for the lit pills this prompt draws. Inline color
   # markers (\1 SGR \2) work as in the design system's pill.sh.
