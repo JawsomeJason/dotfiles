@@ -39,7 +39,7 @@ chezmoi and git command. Edit files in this repo, not the copies in your home fo
 curl -fsSL https://raw.githubusercontent.com/JawsomeJason/dotfiles/main/install.sh | bash
 ```
 
-`install.sh` installs Homebrew, git, chezmoi, gh and gum, clones this repo to `~/code/dotfiles`,
+`install.sh` installs Homebrew, git, chezmoi, gh and gum, clones this repo to `~/.local/share/chezmoi`,
 and runs `dotfiles setup`. Setup works through numbered steps, each one checking the machine's real
 state first, so it asks only for what is missing and is safe to rerun after a stop:
 
@@ -65,7 +65,7 @@ applies the base first, then each layer in name order:
 
 ```sh
 mkdir -p ~/.config/chezmoi-layers/10-example
-printf 'sourceDir = "%s"\n' ~/code/example-layer > ~/.config/chezmoi-layers/10-example/chezmoi.toml
+printf 'sourceDir = "%s"\n' ~/.local/share/chezmoi-layers/example-layer > ~/.config/chezmoi-layers/10-example/chezmoi.toml
 dotfiles apply
 ```
 

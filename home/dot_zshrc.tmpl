@@ -1,4 +1,4 @@
-# Managed by chezmoi from ~/code/dotfiles/home/dot_zshrc.tmpl. Edit that file (or run
+# Managed by chezmoi from home/dot_zshrc.tmpl in the dotfiles repo (`dotfiles path`). Edit that file (or run
 # `chezmoi edit ~/.zshrc`), not this one, or the next `dotfiles apply` puts it back.
 
 # Completions for dotfiles itself (generated from its usage spec). Set before anything runs compinit,
@@ -53,7 +53,7 @@ fi
 # Machine-local settings and secrets
 # ==============================================================================
 # Tokens and anything else this machine alone needs live in ~/.config/zsh/local.zsh, which is
-# never in git. See ~/code/dotfiles/README.md.
+# never in git. See README.md in the dotfiles repo.
 [[ -r ~/.config/zsh/local.zsh ]] && source ~/.config/zsh/local.zsh
 {{- if eq .chezmoi.os "darwin" }}
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Bootstraps a Mac: Homebrew, git, chezmoi, gh and gum, a clone of this repo in ~/code/dotfiles,
+# Bootstraps a Mac: Homebrew, git, chezmoi, gh and gum, a clone of this repo in ~/.local/share/chezmoi,
 # then `dotfiles setup`, which asks the remaining questions. Safe to rerun.
 #
 #   curl -fsSL https://raw.githubusercontent.com/JawsomeJason/dotfiles/main/install.sh | bash
@@ -8,7 +8,7 @@
 set -euo pipefail
 
 repo=${DOTFILES_REPO_URL:-https://github.com/JawsomeJason/dotfiles.git}
-dir=${DOTFILES_DIR:-$HOME/code/dotfiles}
+dir=${DOTFILES_DIR:-$HOME/.local/share/chezmoi}
 
 if ! command -v brew >/dev/null 2>&1; then
   if [ -x /opt/homebrew/bin/brew ]; then

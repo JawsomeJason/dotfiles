@@ -7,7 +7,7 @@ check() {
 }
 fix() {
   ask ANS_jobRepo "Shared work layer repo (owner/name)" "JawsomeJason/dotjob"
-  dir=$HOME/code/${ANS_jobRepo#*/}
+  dir=$HOME/.local/share/chezmoi-layers/${ANS_jobRepo#*/}
   owner=${ANS_jobRepo%%/*}
   if [ ! -d "$dir/.git" ]; then
     GH_TOKEN=$(gh auth token -u "$owner" 2>/dev/null || gh auth token) gh repo clone "$ANS_jobRepo" "$dir"
