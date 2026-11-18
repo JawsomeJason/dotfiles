@@ -154,7 +154,7 @@ function upgrade {
 # Without it, `clean run` only prunes package caches, each with its own tool, skipping any that is not installed;
 # any other call just says so, so `clean -h` never deletes anything.
 function clean {
-  local s=~/code/dotclaude/plugins/clean/skills/clean/scripts/clean.sh
+  local s=~/code/agents/dotclaude/plugins/clean/skills/clean/scripts/clean.sh
   [[ -f $s ]] || s=(${CLAUDE_CONFIG_DIR:-$HOME/.claude}/plugins/cache/*/clean/*/skills/clean/scripts/clean.sh(Nom[1]))
   [[ -n $s ]] && { bash "$s" "$@"; return }
   print -P "%F{yellow}The full clean tool is not installed; \`clean run\` prunes package caches only.%f"
