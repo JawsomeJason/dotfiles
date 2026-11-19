@@ -10,10 +10,11 @@ fpath=(~/.config/zsh/completions $fpath)
 # ==============================================================================
 export PATH="$PATH:$HOME/.local/bin"                       # user-local binaries
 export PATH="$HOME/.bun/bin:$PATH"                         # bun
+export PATH="$HOME/.cargo/bin:$PATH"                       # cargo-installed binaries
 {{- if not .work }}
 export BUN_INSTALL="$HOME/.bun"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"       # bun completions
-export PATH="/opt/homebrew/opt/rustup/bin:$HOME/.cargo/bin:$HOME/go/bin:$PATH"
+export PATH="/opt/homebrew/opt/rustup/bin:$HOME/go/bin:$PATH"
 path=($HOME/.local/bin ${path:#$HOME/.local/bin})          # user-local binaries win here
 {{- end }}
 
@@ -240,3 +241,11 @@ if [[ -r /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; the
 fi
 [[ -r /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] &&
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# pnpm (kept from `pnpm setup`, which appends this to the live file)
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
